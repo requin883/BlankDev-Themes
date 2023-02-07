@@ -1,0 +1,100 @@
+<!-- social-proof Section -->
+{% liquid
+  assign sec = section.settings
+%}
+<div class="bg-primaryBg">
+  <div class="container mx-auto py-14 lg:py-20 xl:max-w-[1200px]">
+    <div class="swiper social">
+      <div class="swiper-wrapper lg:flex items-center">
+        {% for block in section.blocks %}
+          <div class="swiper-slide sm:w-full md:w-1/4">
+            {% if block.settings.logo != nil %}
+              <picture>
+                <img src="{{ block.settings.logo | img_url: 'master' }}" alt="{{ block.settings.logo.alt }}" class="max-w-3/5 mx-auto max-h-20">
+              </picture>
+            {% endif %}
+            <div class="text-primary text-base font-medium font-montserrat w-3/5 mx-auto mt-5 text-center">{{ block.settings.logo_desc }}</div>
+          </div> 
+        {% endfor %}
+      </div>
+      <div class="mt-24 lg:hidden">
+        <div class="swiper-button-next socials hidden md:block"> </div>
+        <div class="swiper-button-prev socials hidden md:block"> </div>
+        <div class="swiper-pagination socials"> </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var init = false;
+
+  function swiperCard() {
+    if (window.innerWidth <= 1024) {
+      if (!init) {
+        init = true;
+        swiper = new Swiper('.social', {
+          slidesPerView: 1,
+          loop: true,
+          pagination: {
+            el: '.swiper-pagination'
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          }
+        });
+      }
+    } else if (init) {
+      swiper.destroy();
+      init = false;
+    }
+  }
+  swiperCard();
+  window.addEventListener("resize", swiperCard);
+</script>
+
+{% stylesheet %}
+  .social .swiper-button-next,.social .swiper-button-prev{
+    color:#272727;
+  }
+  .social .swiper-pagination-bullet-active{
+    width:40px;
+    height:2px;
+    background:#272727
+  }
+  .social .swiper-pagination-bullet{
+    width:40px;
+    height:2px
+  }
+{% endstylesheet %}
+
+{% schema %}
+  {
+    "name": "Social Proof",
+    "settings": [],
+    "blocks": [
+      {
+        "type": "logos",
+        "name": "Add A New Logo",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Brand Logo"
+          },
+          {
+            "type": "richtext",
+            "id": "logo_desc",
+            "label": "Brand Description"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Social Proof Section"
+      }
+    ]
+  }
+{% endschema %}

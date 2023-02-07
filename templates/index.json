@@ -1,0 +1,197 @@
+{
+  "sections": {
+    "ea206a4f-b4ff-4289-896b-e67cf4c79f21": {
+      "type": "hero-banner",
+      "settings": {
+        "hero_bg": "shopify:\/\/shop_images\/hero.png",
+        "top_padding": 400,
+        "bottom_padding": 50,
+        "align": "start",
+        "title": "Shop the Latest Denim Trends",
+        "desc": "",
+        "product": "coat"
+      }
+    },
+    "cae6951d-c0b8-4801-a52c-2150ac8c9e5d": {
+      "type": "icons-with-text",
+      "blocks": {
+        "9d15ad53-63a7-4729-a397-62192e94620e": {
+          "type": "Icons",
+          "settings": {
+            "icon": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"36\" height=\"52\" viewbox=\"0 0 36 52\" fill=\"none\">\n<path d=\"M33.1667 25.8588C33.1667 33.6685 26.3767 40 18 40C9.62334 40 2.83334 33.6685 2.83334 25.8588C2.83334 18.048 18 2.66666 18 2.66666C18 2.66666 33.1667 18.048 33.1667 25.8588Z\" stroke=\"#272727\" stroke-width=\"4\" stroke-linejoin=\"round\"><\/path>\n<path d=\"M18 2.66666V40M18 40V49.3333\" stroke=\"#272727\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><\/path>\n<path d=\"M33.1667 25.8588C33.1667 33.6685 26.3767 40 18 40C9.62334 40 2.83334 33.6685 2.83334 25.86M33.1667 25.8588C33.1667 18.048 18 2.66666 18 2.66666C18 2.66666 2.83334 18.048 2.83334 25.8588\" stroke=\"#272727\" stroke-width=\"4\" stroke-linejoin=\"round\"><\/path>\n<\/svg>",
+            "icon_title": "Enviromentally  Sustainable",
+            "icon_desc": "<p>Our eco-friendly products minimize environmental impact and are made from sustainable materials.<\/p>"
+          }
+        },
+        "9d9b8877-3358-4147-ad3a-eca5cffb72e0": {
+          "type": "Icons",
+          "settings": {
+            "icon": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"38\" height=\"49\" viewbox=\"0 0 38 49\" fill=\"none\">\n<path d=\"M16.4917 25.75L19 23.825L21.45 25.75C21.8778 26.1 22.3444 26.1093 22.85 25.778C23.3556 25.4482 23.5111 25.0111 23.3167 24.4667L22.325 21.3167L25.125 19.1C25.5528 18.75 25.6796 18.3121 25.5053 17.7863C25.3296 17.2621 24.9694 17 24.425 17H21.1L20.1083 13.9083C19.9139 13.3639 19.5444 13.0917 19 13.0917C18.4556 13.0917 18.0861 13.3639 17.8917 13.9083L16.9 17H13.575C13.0306 17 12.6611 17.2722 12.4667 17.8167C12.2722 18.3611 12.3889 18.7889 12.8167 19.1L15.6167 21.3167L14.625 24.4667C14.4306 25.0111 14.576 25.4482 15.0613 25.778C15.5482 26.1093 16.025 26.1 16.4917 25.75V25.75ZM8.09167 48.6167C7.31389 48.8889 6.60378 48.7917 5.96133 48.325C5.32044 47.8583 5 47.2361 5 46.4583V31.6417C3.52222 30.0083 2.375 28.1417 1.55833 26.0417C0.741666 23.9417 0.333332 21.7055 0.333332 19.3333C0.333332 14.1222 2.14167 9.70832 5.75833 6.09166C9.375 2.47499 13.7889 0.666656 19 0.666656C24.2111 0.666656 28.625 2.47499 32.2417 6.09166C35.8583 9.70832 37.6667 14.1222 37.6667 19.3333C37.6667 21.7055 37.2583 23.9417 36.4417 26.0417C35.625 28.1417 34.4778 30.0083 33 31.6417V46.4583C33 47.2361 32.6788 47.8583 32.0363 48.325C31.3954 48.7917 30.6861 48.8889 29.9083 48.6167L19 45L8.09167 48.6167ZM19 33.3333C22.8889 33.3333 26.1944 31.9722 28.9167 29.25C31.6389 26.5278 33 23.2222 33 19.3333C33 15.4444 31.6389 12.1389 28.9167 9.41666C26.1944 6.69443 22.8889 5.33332 19 5.33332C15.1111 5.33332 11.8056 6.69443 9.08333 9.41666C6.36111 12.1389 5 15.4444 5 19.3333C5 23.2222 6.36111 26.5278 9.08333 29.25C11.8056 31.9722 15.1111 33.3333 19 33.3333ZM9.66667 42.725L19 40.3333L28.3333 42.725V35.4917C26.9722 36.2694 25.5046 36.8815 23.9303 37.328C22.3546 37.776 20.7111 38 19 38C17.2889 38 15.6454 37.776 14.0697 37.328C12.4954 36.8815 11.0278 36.2694 9.66667 35.4917V42.725Z\" fill=\"#272727\"><\/path>\n<\/svg>",
+            "icon_title": "Premium Quality",
+            "icon_desc": "<p>Invest in a lasting product that combines form and function.<\/p>"
+          }
+        },
+        "b60b9a25-0b4e-488b-bfd2-7d8b6d52ce22": {
+          "type": "Icons",
+          "settings": {
+            "icon": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"50\" height=\"36\" viewbox=\"0 0 50 36\" fill=\"none\">\n<path d=\"M10.65 35.6167C8.82222 35.6167 7.27599 34.9851 6.01133 33.722C4.74822 32.4573 4.11666 30.9111 4.11666 29.0833C3.02777 29.0056 2.09444 28.5583 1.31666 27.7417C0.538883 26.925 0.149994 25.9722 0.149994 24.8833V4.7C0.149994 3.53333 0.558327 2.54167 1.37499 1.725C2.19166 0.908334 3.18333 0.5 4.34999 0.5H31.8833C33.05 0.5 34.0518 0.908334 34.8887 1.725C35.724 2.54167 36.1417 3.53333 36.1417 4.7V9.36667H41.275C41.625 9.36667 41.9361 9.44444 42.2083 9.6C42.4805 9.75555 42.7333 9.96944 42.9667 10.2417L49.4417 18.9333C49.5972 19.0889 49.7045 19.2732 49.7637 19.4863C49.8212 19.701 49.85 19.925 49.85 20.1583V26.9833C49.85 27.5667 49.6462 28.0629 49.2387 28.472C48.8295 28.8796 48.3333 29.0833 47.75 29.0833H45.65C45.65 30.9111 45.0083 32.4573 43.725 33.722C42.4417 34.9851 40.8861 35.6167 39.0583 35.6167C37.2694 35.6167 35.7333 34.9851 34.45 33.722C33.1667 32.4573 32.525 30.9111 32.525 29.0833H17.1833C17.1833 30.9111 16.5518 32.4573 15.2887 33.722C14.024 34.9851 12.4778 35.6167 10.65 35.6167ZM10.65 32.1167C11.5055 32.1167 12.225 31.825 12.8083 31.2417C13.3917 30.6583 13.6833 29.9389 13.6833 29.0833C13.6833 28.2278 13.3917 27.5083 12.8083 26.925C12.225 26.3417 11.5055 26.05 10.65 26.05C9.79444 26.05 9.07499 26.3417 8.49166 26.925C7.90833 27.5083 7.61666 28.2278 7.61666 29.0833C7.61666 29.9389 7.90833 30.6583 8.49166 31.2417C9.07499 31.825 9.79444 32.1167 10.65 32.1167ZM3.64999 4.7V24.8833C3.64999 24.9611 3.65933 25.0389 3.67799 25.1167C3.69822 25.1944 3.73788 25.2621 3.79699 25.3197L3.97199 25.4947C4.02955 25.5538 4.09722 25.5833 4.17499 25.5833H5.34166C5.84722 24.7278 6.56666 24.0083 7.49999 23.425C8.43333 22.8417 9.48333 22.55 10.65 22.55C11.7778 22.55 12.8184 22.8316 13.772 23.3947C14.724 23.9593 15.4528 24.6889 15.9583 25.5833H32.6417V4.7C32.6417 4.50556 32.574 4.34067 32.4387 4.20533C32.3018 4.06844 32.1167 4 31.8833 4H4.34999C4.15555 4 3.99066 4.06844 3.85533 4.20533C3.71844 4.34067 3.64999 4.50556 3.64999 4.7ZM39.1167 32.1167C39.9722 32.1167 40.6917 31.825 41.275 31.2417C41.8583 30.6583 42.15 29.9389 42.15 29.0833C42.15 28.2278 41.8583 27.5083 41.275 26.925C40.6917 26.3417 39.9722 26.05 39.1167 26.05C38.2611 26.05 37.5323 26.3417 36.9303 26.925C36.3268 27.5083 36.025 28.2278 36.025 29.0833C36.025 29.9389 36.3268 30.6583 36.9303 31.2417C37.5323 31.825 38.2611 32.1167 39.1167 32.1167ZM36.1417 20.9167H46.5833L40.5167 12.8667H36.1417V20.9167Z\" fill=\"#272727\"><\/path>\n<\/svg>",
+            "icon_title": "14 day Returns and Exchanges",
+            "icon_desc": "<p>Items can be returned within 14 days after delivery.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "9d15ad53-63a7-4729-a397-62192e94620e",
+        "9d9b8877-3358-4147-ad3a-eca5cffb72e0",
+        "b60b9a25-0b4e-488b-bfd2-7d8b6d52ce22"
+      ],
+      "settings": {
+        "bg": "shopify:\/\/shop_images\/Ellipse_2_353ea847-939c-414d-9403-0e6f41c992c9.png",
+        "url": "",
+        "label": "LEARN MORE"
+      }
+    },
+    "4ed22df7-7ce9-4db0-825b-36b3746437bf": {
+      "type": "text-with-image",
+      "settings": {
+        "sec_title": "Our Brand",
+        "reverse": false,
+        "title": "Hoodies.",
+        "desc": "<p>Designed for a balanced combination of comfort, utility, and durability without the bulky-feel and stay warm without overheating.<\/p>",
+        "product": "coat",
+        "image": "shopify:\/\/shop_images\/image_50.png"
+      }
+    },
+    "4ccc06d0-8e65-4517-8055-8677421e065b": {
+      "type": "text-with-image",
+      "settings": {
+        "sec_title": "",
+        "reverse": true,
+        "title": "Jeans.",
+        "desc": "<p>Whether you prefer a classic straight leg, a trendy skinny fit, or a comfortable bootcut, you'll find your perfect pair in our range.<\/p>",
+        "product": "new-spring-summer-elastic-trousers-black-and-white-ripped-jeans-fashion-sexy-skinny-denim-pencil-pants-s-3",
+        "image": "shopify:\/\/shop_images\/image_52.png"
+      }
+    },
+    "d494a819-072e-4f50-8a61-fd494ca172f3": {
+      "type": "text-with-image",
+      "settings": {
+        "sec_title": "",
+        "reverse": false,
+        "title": "T-shirts.",
+        "desc": "<p>From classic crewneck tees to trendy graphic designs, you'll find the perfect t-shirt for your wardrobe.<\/p>",
+        "product": "new-spring-summer-elastic-trousers-black-and-white-ripped-jeans-fashion-sexy-skinny-denim-pencil-pants-s-3",
+        "image": "shopify:\/\/shop_images\/image_53.png"
+      }
+    },
+    "72931124-1565-4a96-b03d-00423d6ee7c6": {
+      "type": "social-proof",
+      "blocks": {
+        "36d031e3-be7a-4d68-b916-315f8d6a67ea": {
+          "type": "logos",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/Frame_33.png",
+            "logo_desc": ""
+          }
+        },
+        "f3f1728b-f672-42cc-8bfb-00137a1f4e2d": {
+          "type": "logos",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/image_55_2859ad4f-1266-47ff-96c2-c8ac5cc55559.png",
+            "logo_desc": ""
+          }
+        },
+        "5cb38f9b-0a78-481d-994a-eb774615b1f5": {
+          "type": "logos",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/Frame_35.png",
+            "logo_desc": ""
+          }
+        },
+        "e188c3ca-81b4-4af3-a5fb-a4d8cddc639e": {
+          "type": "logos",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/Frame_36.png",
+            "logo_desc": ""
+          }
+        }
+      },
+      "block_order": [
+        "36d031e3-be7a-4d68-b916-315f8d6a67ea",
+        "f3f1728b-f672-42cc-8bfb-00137a1f4e2d",
+        "5cb38f9b-0a78-481d-994a-eb774615b1f5",
+        "e188c3ca-81b4-4af3-a5fb-a4d8cddc639e"
+      ],
+      "settings": {
+      }
+    },
+    "3689cf1d-c0e6-4d3b-9232-10036221fa92": {
+      "type": "manual-rating",
+      "disabled": true,
+      "blocks": {
+        "9de7cce3-c9c4-4fd8-b803-86be4eb455b8": {
+          "type": "review",
+          "settings": {
+            "rating": "shopify:\/\/shop_images\/Frame_38.png",
+            "desc": "<p>This is a solid jacket. It fits nice. My wife loves it.<\/p>",
+            "pic": "shopify:\/\/shop_images\/Ellipse_4.png",
+            "name": "Tom Harris",
+            "check": "shopify:\/\/shop_images\/Icons.png",
+            "order": "Order confirmed"
+          }
+        },
+        "5ac1be6a-9938-4d3c-8ef6-5237b5d40192": {
+          "type": "review",
+          "settings": {
+            "rating": "shopify:\/\/shop_images\/Frame_38.png",
+            "desc": "<p>Best and durable jacket.<\/p>",
+            "pic": "shopify:\/\/shop_images\/Ellipse_4_1.png",
+            "name": "Esther Howard",
+            "check": "shopify:\/\/shop_images\/Icons.png",
+            "order": "Order confirmed"
+          }
+        },
+        "0d507268-381c-462e-9835-383037cea5ad": {
+          "type": "review",
+          "settings": {
+            "rating": "shopify:\/\/shop_images\/Frame_38.png",
+            "desc": "<p>I highly recommend this jacket for what it cost and the quality you get with it.<\/p>",
+            "pic": "shopify:\/\/shop_images\/Ellipse_4_2.png",
+            "name": "Tom Harris",
+            "check": "shopify:\/\/shop_images\/Icons.png",
+            "order": "Order confirmed"
+          }
+        },
+        "27827ea6-26b3-4b25-b7b9-f875baec4763": {
+          "type": "review",
+          "settings": {
+            "rating": "shopify:\/\/shop_images\/Frame_38.png",
+            "desc": "<p>I highly recommend this jacket for what it cost and the quality you get with it.<\/p>",
+            "pic": "shopify:\/\/shop_images\/Ellipse_4_2.png",
+            "name": "Theresa Webb",
+            "check": "shopify:\/\/shop_images\/Icons.png",
+            "order": "Order confirmed"
+          }
+        }
+      },
+      "block_order": [
+        "9de7cce3-c9c4-4fd8-b803-86be4eb455b8",
+        "5ac1be6a-9938-4d3c-8ef6-5237b5d40192",
+        "0d507268-381c-462e-9835-383037cea5ad",
+        "27827ea6-26b3-4b25-b7b9-f875baec4763"
+      ],
+      "settings": {
+        "title": "What they say"
+      }
+    }
+  },
+  "order": [
+    "ea206a4f-b4ff-4289-896b-e67cf4c79f21",
+    "cae6951d-c0b8-4801-a52c-2150ac8c9e5d",
+    "4ed22df7-7ce9-4db0-825b-36b3746437bf",
+    "4ccc06d0-8e65-4517-8055-8677421e065b",
+    "d494a819-072e-4f50-8a61-fd494ca172f3",
+    "72931124-1565-4a96-b03d-00423d6ee7c6",
+    "3689cf1d-c0e6-4d3b-9232-10036221fa92"
+  ]
+}

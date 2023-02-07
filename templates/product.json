@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "breadcrumb": {
+      "type": "breadcrumb",
+      "settings": {
+      }
+    },
+    "main": {
+      "type": "product-vue",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "breadcrumb",
+    "main"
+  ]
+}

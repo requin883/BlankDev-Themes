@@ -1,0 +1,585 @@
+<!-- custom-collection-V7 Section -->
+
+<div id="collection-page" class="mx-auto max-w-[1300px] container">
+
+  <template v-if="selectedShip != '' || selectedSize != '' || selectedVendors.length != 0 || selectedTypes.length != 0 || selectedComfortFeel != ''">
+    <div class="mb-4 ds:mb-5">
+      <span class="font-normal text-[13px] font-josefin text-[#3D5656] uppercase">Selected Filters: </span>
+      <span @click="clearAllFilters" class="text-[#3D5656] font-josefin font-normal cursor-pointer">Clear All</span>
+      <div class="flex flex-wrap gap-4 mt-4" >
+        <div v-if="selectedShip != ''" class="text-center font-josefin text-[#3D5656] text-[13px] border-[1px] capitalize border-solid border-[#3D5656] rounded-full px-6 py-4">
+          ${ selectedShip }
+        </div>
+        <div v-if="selectedSize != ''" class="text-center font-josefin text-[#3D5656] text-[13px] border-[1px] capitalize border-solid border-[#3D5656] rounded-full px-6 py-4">
+          ${ selectedSize }
+        </div>
+        <div v-if="selectedComfortFeel != ''" class="text-center font-josefin text-[#3D5656] text-[13px] border-[1px] capitalize border-solid border-[#3D5656] rounded-full  px-6 py-4">
+          ${ selectedComfortFeel }
+        </div>
+        <div v-if="selectedVendors.length > 0" v-for="(vendor, index) in selectedVendors" class="text-center font-josefin text-[#3D5656] text-[13px] border-[1px] capitalize border-solid border-[#3D5656] rounded-full px-6 py-4">
+          ${ vendor }
+        </div>
+        <div v-if="selectedTypes.length > 0" v-for="(type, index) in selectedTypes" class="text-center font-josefin text-[#3D5656] text-[13px] border-[1px] capitalize border-solid border-[#3D5656] rounded-full px-6 py-4">
+          ${ type }
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <div class="grid gap-y-6 gap-x-5 grid-cols-4">
+    <div id="extDiv" class="grid grid-cols-1 gap-[48px] sticky top-[8vh] z-10 bg-white w-full px-4 py-3 h-min">
+      {% comment %} desktop {% endcomment %}
+      <div class="relative">
+        <h2 class="text-[18px] font-josefin font-normal text-[#272727] leading-[25px] mb-[26px]">Filter</h2>
+        <div class="py-[16px]">
+          <div onclick="myFunctionFlex('shipping')" class="flex items-center justify-between cursor-pointer">
+            <span class="font-normal text-[#3D5656] text-[13px] font-josefin uppercase">recommendations for you</span>
+            <button class="plus-minus-icon" id="shippingplus">
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+          <form id="shipping" class="hidden static flex-col gap-2 mt-5">
+              <input v-if="selectedShip != ''" @click="clearFilter($event)" type="reset" name="shipping" value="Clear"  class="absolute right-0 top-[50px] text-[#3D5656] font-josefin cursor-pointer"/>
+              <div class="flex items-center gap-2">
+                  <input @input="addToFilter($event)"  type="radio" name="shipping" id="local" value="local" class="border-secondary rounded-full focus:ring-0 w-5 h-5">
+                  <label for="local" class="align-middle font-josefin capitalize text-[#272727] cursor-pointer">Local</label><br>
+              </div>
+              <div class="flex items-center gap-2">
+                  <input @input="addToFilter($event)"  type="radio" name="shipping" id="nationwide" value="nationwide" class="border-secondary rounded-full focus:ring-0 w-5 h-5">
+                  <label for="nationwide" class="align-middle font-josefin capitalize text-[#272727] cursor-pointer">Nationwide</label><br>
+              </div>
+          </form>
+        </div>
+        <hr class="h-[0.2px] w-full bg-[#3D5656]">
+      </div>
+      <div v-if="vendors.length != 0" class="relative">
+        <div class="py-[16px]">
+          <div onclick="myFunctionFlex('brand')" class="flex items-center justify-between cursor-pointer">
+            <span class="font-normal text-[#3D5656] text-[13px] font-josefin uppercase">Brand</span>
+            <button class="plus-minus-icon" id="brandplus">
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+          <form id="brand" class="hidden static flex-col gap-2 mt-5">
+              <input v-if="selectedVendors.length != 0" @click="clearFilter($event)" type="reset" name="brand" value="Clear"  class="absolute right-0 top-[50px] text-[#3D5656] font-josefin cursor-pointer"/>
+              <div v-for="(item, index) in vendors" class="flex items-center gap-2">
+                  <input @input="addToFilter($event, item)" type="checkbox" name="brand" :id="item" :value="item" class="border-secondary rounded focus:ring-0 w-5 h-5">
+                  <label :for="item" class="align-middle capitalize cursor-pointer font-josefin text-[#272727]">${ item }</label><br>
+              </div>
+          </form>
+        </div>
+        <hr class="h-[0.2px] w-full bg-[#3D5656]">
+      </div>
+      <div class="relative">
+        <div class="py-[16px]">
+          <div onclick="myFunctionFlex('size')" class="flex items-center justify-between cursor-pointer">
+            <span class="font-normal text-[#3D5656] text-[13px] font-josefin uppercase">glasses for</span>
+            <button class="plus-minus-icon" id="sizeplus">
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+          <form id="size" class="hidden static flex-col gap-3 mt-5">
+            <input v-if="selectedSize != ''" @click="clearFilter($event)" type="reset" name="size" value="Clear" class="absolute right-0 top-[50px] text-[#3D5656] font-josefin cursor-pointer"/>
+            <div class="flex items-center gap-2">
+              <input @input="addToFilter($event)" type="radio" name="size" id="women" value="women" class="border-secondary rounded-full focus:ring-0 w-5 h-5">
+              <label for="women" class="align-middle capitalize cursor-pointer font-josefin text-[#272727]">Women</label><br>
+            </div>
+            <div class="flex items-center gap-2">
+              <input @input="addToFilter($event)" type="radio" name="size" id="men" value="men" class="border-secondary rounded-full focus:ring-0 w-5 h-5">
+              <label for="men" class="align-middle capitalize cursor-pointer font-josefin text-[#272727]">Men</label><br>
+            </div>
+          </form>
+        </div>
+        <hr class="h-[0.2px] w-full bg-[#3D5656]">
+      </div>
+      <div class="relative">
+        <div class="py-[16px]">
+          <div onclick="myFunctionFlex('comfort-feel')" class="flex items-center justify-between cursor-pointer">
+            <span class="font-normal text-[#3D5656] text-[13px] font-josefin uppercase">head width</span>
+            <button class="plus-minus-icon" id="comfort-feelplus">
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+          <form id="comfort-feel" class="hidden static flex-col gap-3 mt-5">
+              <input v-if="selectedComfortFeel != ''" @click="clearFilter($event)" type="reset" name="comfort-feel" value="Clear" class="absolute right-0 top-[50px] text-[#3D5656] font-josefin cursor-pointer"/>
+              <div class="flex items-center gap-2">
+                  <input @input="addToFilter($event)" type="radio" name="comfort-feel" id="thin" value="thin" class="border-secondary rounded-full focus:ring-0 w-5 h-5">
+                  <label for="thin" class="align-middle capitalize cursor-pointer font-josefin text-[#272727]">Thin</label><br>
+              </div>
+                <div class="flex items-center gap-2">
+                  <input @input="addToFilter($event)" type="radio" name="comfort-feel" id="medium" value="medium" class="border-secondary rounded-full focus:ring-0 w-5 h-5">
+                  <label for="medium" class="align-middle capitalize cursor-pointer font-josefin text-[#272727]">Medium</label><br>
+              </div>
+              <div class="flex items-center gap-2">
+                  <input @input="addToFilter($event)" type="radio" name="comfort-feel" id="thick" value="thick" class="border-secondary rounded-full focus:ring-0 w-5 h-5">
+                  <label for="thick" class="align-middle capitalize cursor-pointer font-josefin text-[#272727]">Thick</label><br>
+              </div>
+          </form>
+        </div>
+        <hr class="h-[0.2px] w-full bg-[#3D5656]">
+      </div>
+      <div v-if="types.length != 0" class="relative">
+        <div class="py-[16px]">
+          <div onclick="myFunctionFlex('type')" class="flex items-center justify-between cursor-pointer">
+            <span class="font-normal text-[#3D5656] text-[13px] font-josefin uppercase">frame Type</span>
+            <button class="plus-minus-icon" id="typeplus">
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+          <form id="type" class="hidden static flex-col gap-2 mt-5">
+            <input v-if="selectedTypes.length != 0" @click="clearFilter($event)" type="reset" name="type" value="Clear"  class="absolute right-0 top-[50px] text-[#3D5656] font-josefin cursor-pointer"/>
+            <div v-for="(type, index) in types" class="flex items-center gap-2">
+                <input @input="addToFilter($event, type)" type="checkbox" name="type" :id="type" :value="type" class="border-secondary rounded focus:ring-0 w-5 h-5">
+                <label :for="type" class="align-middle capitalize">${ type }</label><br>
+            </div>
+          </form>
+        </div>
+        <hr class="h-[0.2px] w-full bg-[#3D5656]">
+      </div>
+    </div>
+
+    <div class="col-span-3">
+      <div class="flex justify-between items-center mb-[32px]">
+        <p class="uppercase font-josefin text-[14px] text-[#7E7E7E]">Showing ${ count } results</p>
+        <select class="bg-[#3D5656]/[.1] px-[16px] py-[10px] text-[#3D5656] font-josefin font-normal text-[16px] bg-auto appearance-none bg-right bg-no-repeat bg-arrow">
+          <template v-for="(option, index) in sorting">
+            <option :value="option[1]">${ option[1] }</option>
+          </template>
+        </select>
+      </div>
+      <div class="grid gap-5 grid-cols-3">
+        <template v-if="selectedShip != '' || selectedSize != '' || selectedVendors.length != 0 || selectedTypes.length != 0 || selectedComfortFeel != ''" v-for="(product, index) in products">
+          <div v-if="includeProductShip(product) && includeProductSize(product) && includeProductFeel(product) && includeProductVendor(product) && includeProductTypes(product) && product.title != 'Offer'">
+            <div class="relative">
+              <div v-if="product.compare_at_price != 0" class="flex absolute left-4 top-4 bg-[#59E08F]/[.1] max-h-[25px] py-1 px-5">
+                  <p class="self-center font-bold text-[14px] text-center text-[#59E08F]">Sale</p>
+              </div>
+              <a :href="'/products/' + product.handle" :title="product.title" class="h-[340px] flex flex-col justify-center">
+                <img v-if="index < 6" class="object-cover rounded-t-cl w-full" :src="product.featured_image + '&width=450'" :title="product.title" alt="Product">
+                <img v-else class="object-cover rounded-t-cl w-full" :src="product.featured_image + '&width=450'" :title="product.title" alt="Product" loading="lazy">
+              </a>
+            </div>
+            <div class="p-[16px]">
+              <h2 class="font-normal font-josefin text-[16px] text-[#272727] mb-[15px]"><a :href="'/products/' + product.handle" :title="product.title">${ product.title }</a></h2>
+              <div class="flex justify-between">
+                <div class="flex gap-[8px]">
+                  <p v-if="product.compare_at_price != 0" class="font-normal text-[14px] font-josefin text-[#7E7E7E] line-through">$ ${ product.compare_at_price }</p>
+                  <p class="font-normal font-josefin text-[14px] text-[#3D5656]">$ ${ product.price }</p>     
+                </div>
+                <div class="grid justify-items-end ds:justify-items-center">
+                  <!-- Stamped - Begin badge -->
+                  <span class="stamped-product-reviews-badge stamped-main-badge" 
+                  :data-id="product.id" 
+                  :data-product-title="product.title" 
+                  :data-product-type="product.type" 
+                  style="display: block;"></span>
+                  <!-- Stamped - End badge -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+        <template v-else v-for="(product, index) in products">
+          <div v-if="product.title != 'Offer'">
+            <div class="relative">
+              <div v-if="product.compare_at_price != 0" class="flex absolute left-4 top-4 bg-[#59E08F]/[.1] max-h-[25px] py-1 px-5">
+                  <p class="self-center font-bold text-[14px] text-center text-[#59E08F]">Sale</p>
+              </div>
+              <a :href="'/products/' + product.handle" :title="product.title" class="h-[340px] flex flex-col justify-center">
+                <img v-if="index < 6" class="object-cover h-full w-full" :src="product.featured_image + '&width=450'" :title="product.title" alt="Product">
+                <img v-else class="object-cover h-full w-full" :src="product.featured_image + '&width=450'" :title="product.title" alt="Product" loading="lazy">
+              </a>
+            </div>
+            <div class="p-[16px]">
+              <h2 class="font-normal font-josefin text-[16px] text-[#272727] mb-[15px]"><a :href="'/products/' + product.handle" :title="product.title">${ product.title }</a></h2>
+              <div class="flex justify-between">
+                <div class="flex gap-[8px]">
+                  <p v-if="product.compare_at_price != 0" class="font-normal text-[14px] font-josefin text-[#7E7E7E] line-through">$ ${ product.compare_at_price }</p>
+                  <p class="font-normal font-josefin text-[14px] text-[#3D5656]">$ ${ product.price }</p>     
+                </div>
+                <div class="grid justify-items-end ds:justify-items-center">
+                  <!-- Stamped - Begin badge -->
+                  <span class="stamped-product-reviews-badge stamped-main-badge" 
+                  :data-id="product.id" 
+                  :data-product-title="product.title" 
+                  :data-product-type="product.type" 
+                  style="display: block;"></span>
+                  <!-- Stamped - End badge -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+
+{% paginate collection.products by 250 %}
+  {%- capture allProducts -%}
+  [
+    {%- for product in collection.products -%}
+      {
+        "id": {{ product.id }},
+        "handle": {{ product.handle | json }},
+        "title": {{ product.title | json }},
+        "price": {{ product.price | json }},
+        "compare_at_price": {{ product.compare_at_price | json }},
+        "type": {{ product.type | json }},
+        "vendor": {{ product.vendor | json }},
+        "tags": {{ product.tags | json }},
+        "created": "{{ product.created_at | date }}",
+        "available": {{ product.available | json }},
+        "featured_image": {{ product.featured_image | json }},
+        "variants": [
+          {%- for option in product.options_by_name['Size'].values -%}
+            {{ option | json }},
+          {%- endfor -%}
+        ],
+        "available_variant": {{ product.selected_or_first_available_variant.id | json }}
+      },
+    {%- endfor -%}
+  ]
+  {%- endcapture -%}
+  
+{% endpaginate %}
+
+
+<script>
+var { createApp } = Vue;
+const appCollection = createApp({
+    delimiters: ['${', '}'],
+    data() {
+      const
+      products = {{ allProducts }},
+      paginate = "",
+      collection = "",
+      vendors = {{ collection.all_vendors | json }},
+      tags = {{ collection.all_tags | json }},
+      types = {{ collection.all_types | json }},
+      count = {{ collection.all_products_count }},
+      sorting = {{ collection.sort_options | json }},
+      selectedShip = "",
+      selectedSize = "",
+      selectedVendors = [],
+      selectedTypes = [],
+      selectedTags = [],
+      selectedComfortFeel = ""
+      addingToCart = false;
+
+      return {
+        products,
+        paginate,
+        collection,
+        vendors,
+        tags,
+        types,
+        count,
+        sorting,
+        selectedShip,
+        selectedSize,
+        selectedVendors,
+        selectedTypes,
+        selectedTags,
+        selectedComfortFeel,
+        addingToCart
+      }
+    },
+
+    methods: {
+      
+      addToFilter(e, filter) {
+        
+        if (e.target.name == 'shipping') {
+          if (e.target.checked) {
+            this.selectedShip = e.target.value;
+          }
+        }
+
+        if (e.target.name == 'size') {
+          if (e.target.checked) {
+            this.selectedSize = e.target.value;
+          }
+        }
+
+        if (e.target.name == "comfort-feel") {
+          if (e.target.checked) {
+            this.selectedComfortFeel = e.target.value;
+          }
+        }
+
+        if (e.target.name == "brand") {
+          if (e.target.checked) {
+            this.selectedVendors.push(filter);
+          } else {
+            const vendorIndex = this.selectedVendors.indexOf(filter);
+            this.selectedVendors.splice(vendorIndex, 1);
+          }
+        }
+
+        if (e.target.name == "type") {
+          if (e.target.checked) {
+            this.selectedTypes.push(filter);
+          } else {
+            const typeIndex = this.selectedTypes.indexOf(filter);
+            this.selectedTypes.splice(typeIndex, 1);
+          }
+        }
+
+        if (e.target.name == "tag") {
+          if (e.target.checked) {
+            this.selectedTags.push(filter);
+          } else {
+            const tagIndex = this.selectedTags.indexOf(filter);
+            this.selectedTags.splice(tagIndex, 1);
+          }
+        }
+      },
+
+      includeProductShip(product) {
+        const ship = this.selectedShip;
+        if (ship != "") {
+          if (product.tags.includes(`${ship}`)) {
+            return true
+          } else {
+            return false
+          }
+        } else {
+          return true
+        }
+      },
+
+      includeProductSize(product) {
+        const size = this.selectedSize;
+        if (size != "") {
+          if (product.tags.includes(`${size}`)) {
+            return true
+          } else {
+            return false
+          }          
+        } else {
+          return true
+        }
+      },
+
+      includeProductFeel(product) {
+        const comfort = this.selectedComfortFeel;
+        if (comfort != "") {
+          if (product.tags.includes(`${comfort}`)) {
+            return true
+          } else {
+            return false
+          }          
+        } else {
+          return true
+        }
+      },
+
+      includeProductVendor(product) {
+        const vendors = this.selectedVendors;
+
+        if (vendors.length > 0) {
+          if (vendors.includes(`${product.vendor}`)) {
+            return true
+          } else {
+            return false
+          }
+        } else {
+          return true
+        }        
+      },
+
+      includeProductTypes(product) {
+        const types = this.selectedTypes;
+
+        if (types.length > 0) {
+          if (types.includes(`${product.type}`)) {
+            return true
+          } else {
+            return false
+          }
+        } else {
+          return true
+        }
+      },
+
+      includeProductTags(product) {
+        const tags = this.selectedTags;
+        let ret;
+
+        if (tags.length > 0) {
+          tags.forEach(tag => {
+            if (product.tags.includes(`${tag}`)) {
+             ret = true; 
+            }
+          });
+          return ret
+        } else {
+          return true
+        }
+      },
+
+      clearFilter(e) {
+        if (e.target.name == 'shipping') {
+          this.selectedShip = "";
+          document.getElementById(e.target.name).reset();
+          document.getElementById('mob_' + e.target.name).reset();
+        }
+
+        if (e.target.name == 'size') {
+          this.selectedSize = "";
+          document.getElementById(e.target.name).reset();
+          document.getElementById('mob_' + e.target.name).reset();
+        }
+
+        if (e.target.name == 'comfort-feel') {
+          this.selectedComfortFeel = "";
+          document.getElementById(e.target.name).reset();
+          document.getElementById('mob_' + e.target.name).reset();
+        }
+
+        if (e.target.name == 'brand') {
+          this.selectedVendors = [];
+          document.getElementById(e.target.name).reset();
+          document.getElementById('mob_' + e.target.name).reset();
+        }
+
+        if (e.target.name == 'type') {
+          this.selectedTypes = [];
+          document.getElementById(e.target.name).reset();
+          document.getElementById('mob_' + e.target.name).reset();
+        }
+
+        if (e.target.name == 'tag') {
+          this.selectedTags = [];
+          document.getElementById(e.target.name).reset();
+          document.getElementById('mob_' + e.target.name).reset();
+        }
+      },
+
+      clearAllFilters() {
+          this.selectedShip = "";
+          document.getElementById('shipping').reset();
+          this.selectedSize = "";
+          document.getElementById('size').reset();
+          this.selectedComfortFeel = "";
+          document.getElementById('comfort-feel').reset();
+          this.selectedVendors = [];
+          document.getElementById('brand').reset();
+          this.selectedTypes = [];
+          document.getElementById('type').reset();
+      }
+    }
+});
+appCollection.mount('#collection-page')
+</script>
+
+<script>
+  function myFunctionFlex(id) {
+      var x = document.getElementById(id);
+      var y = document.getElementById(id + 'plus');
+      if (x.classList.contains('hidden')) {
+          x.classList.remove('hidden');
+          x.classList.add('flex');
+      } else {
+          x.classList.remove('flex');
+          x.classList.add('hidden');
+      }
+      if (y.classList.contains('active')) {
+        y.classList.remove('active')
+      } else {
+        y.classList.add('active')
+      }
+  }
+  function myFunctionFilters(id) {
+      var x = document.getElementById(id);
+      const y = document.getElementById('extDiv');
+      const z = document.getElementById('ext_filters');
+      if (x.classList.contains('invisible')) {
+          x.classList.remove('invisible');
+          x.classList.add('visible');
+          x.classList.remove('opacity-0');
+          x.classList.add('opacity-100');
+          z.classList.remove('invisible');
+          z.classList.add('visible');
+          z.classList.remove('opacity-0');
+          z.classList.add('opacity-100');
+      } else {
+          x.classList.remove('visible');
+          x.classList.add('invisible');
+          x.classList.remove('opacity-100');
+          x.classList.add('opacity-0');
+          z.classList.remove('visible');
+          z.classList.add('invisible');
+          z.classList.remove('opacity-100');
+          z.classList.add('opacity-0');
+      }
+      if (y.classList.contains('z-30')) {
+          y.classList.remove('z-30');
+          y.classList.add('z-50');
+      } else {
+          y.classList.remove('z-50');
+          y.classList.add('z-30');
+      }
+  } 
+</script>
+
+<style>
+  .bg-arrow{
+    background-image: url({{ 'sort-arrow.svg' | asset_url }});
+    background-position-x: 90%;
+  }
+  .plus-minus-icon {
+    width: 35px;
+    height: 35px;
+    border: 0;
+    font-size: 1.5em;
+    position: relative;
+  }
+
+  .plus-minus-icon span {
+    position: absolute;
+    transition: 300ms;
+    background: #3D5656;
+    border-radius: 2px;
+  }
+  
+  /* Create the "+" shape by positioning the spans absolutely */
+  .plus-minus-icon span:first-child {
+    top: 25%;
+    bottom: 25%;
+    width: 10%;
+    left: 45%;
+  }
+  
+  .plus-minus-icon span:last-child {
+    left: 25%;
+    right: 25%;
+    height: 10%;
+    top: 45%;
+  }
+  
+  /* Morph the shape when the button is hovered over */
+  .plus-minus-icon.active span {
+    transform: rotate(90deg);
+  }
+  
+  .plus-minus-icon.active span:last-child {
+    left: 50%;
+    right: 50%;
+  }
+</style>
+      
+{% schema %}
+  {
+    "name": "Collection",
+    "settings": [
+    ]
+  }
+{% endschema %}

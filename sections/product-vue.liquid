@@ -1,0 +1,852 @@
+<!-- product-vue Section -->
+
+{% liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign featured_image = current_variant.featured_image | default: product.featured_image 
+  assign rating = section.settings.rating
+  assign price = section.settings.price
+  assign title = section.settings.title
+  assign shipping = section.settings.shipping
+%}
+
+<div id="product" class="mb-10 mx-auto container w-11/12 xl:max-w-[1200px]">
+  <div class="flex flex-col gap-6 md:flex-row md:gap-4 justify-between md:flex-wrap lg:flex-nowrap">
+    <div class="w-full lg:w-2/5 ">
+      <div class="swiper swiper1 bg-white shadow-custom w-full mb-6">
+        <div class="swiper-wrapper items-center">  
+
+          {% for image in product.images %}
+            <picture class="swiper-slide swiper-lazy">
+                <source media="(min-width: 1024px)" srcset="{{ image | image_url: width: 550 }}">
+                <source media="(min-width: 768px)" srcset="{{ image | image_url: width: 990 }}">
+                <source media="(min-width: 480px)" srcset="{{ image | image_url: width: 730 }}">
+                <img class="object-cover m-auto md:h-[500px] h-[250px] sm:h-[300px] " src="{{ image | image_url: width: 440 }}" alt="{{ image.alt | escape  }}" title="{{ product.alt | escape }}" id="ProductPhotoImg">
+            </picture>
+          {% endfor %}    
+
+        </div>             
+        <div class="swiper-button-next"><span></span></div>
+        <div class="swiper-button-prev"><span></span></div>
+      </div>
+
+      <div class="swiper swiper2">
+        <div class="swiper-wrapper">
+        {% for image in product.images %}
+          <div class="swiper-slide flex items-center bg-white" >
+            <img class="object-cover mx-auto w-full" src="{{ image | image_url: height: 100 }}" title="{{ product.title | escape }}" alt="{{ image.alt | escape }}">
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="bg-transparent rounded-3xl w-fit pt-0">
+      <div class="md:flex md:justify-between lg:block">
+        <div class="md:w-[45%] lg:w-full"> 
+          {% if title %}
+            <div class="sm:mb-8 mb-3 main-info-title">
+              <h1 class="text-primaryTxt sm:text-[22px] font-bold text-[16px] sm:my-0 font-open">{{ product.title }}</h1>
+            </div>
+            {% endif %}
+            {% for block in section.blocks %}
+              {% case block.type %}
+                {% when 'desc' %}
+                {% assign desc = block.settings.little_desc %}
+                {% if desc != blank %}
+                  <div class="mb-8 font-montserrat font-medium opacity-[.75] text-base">
+                    {{ desc }}
+                  </div>
+                {% endif %}
+              {% endcase %}
+            {% endfor %}
+          <template v-if="loading == true">
+            <div class="flex items-center">
+                <h1 class="text-[20px] mb-4 font-montserrat font-primary font-bold">Loading...</h1>
+                <div class="animate-spin rounded-full border-[6px] border-t-primary border-b-secondary border-x-secondary h-8 w-8"></div>
+            </div>
+          </template>
+          <template v-else>
+          {%- if price -%}
+            <div class="flex flex-col mb-3">
+              <div class="flex gap-2 items-center">
+                <span class="text-base hidden sm:block font-normal text-primaryTxt font-montserrat">Price:</span>
+                <span class="text-primaryTxt text-base md:text-2xl font-bold font-montserrat">${ variant_price } AUD </span>
+                <template v-if="variant_compare_price != '$0.00'">
+                  <span class="text-primaryTxt text-sm opacity-50 line-through font-montserrat">${ variant_compare_price } AUD</span>
+                </template>
+              </div>
+            </div>
+          {% endif %}
+          <div class="flex gap-3 mb-8">
+            {% if section.settings.sale_label != blank %}
+            <template v-if="variant_compare_price != '$0.00'">
+              <div class="bg-discount/[.15] text-discount flex justify-center items-center px-[10px] py-[5px] rounded-[4px] w-[fit-content] font-montserrat font-medium text-sm">
+                <i class="fa-sharp fa-solid fa-ticket-simple" style="margin-right: 0.8rem;"></i>
+                {{ section.settings.sale_label }}
+              </div>
+            </template>
+            {% endif %}
+            {% if shipping %}
+              {% if section.settings.shipping_label != blank %}
+              <div class="bg-shipping/[.15] text-shipping flex justify-center items-center px-[10px] py-[5px] rounded-[4px] w-[fit-content] font-montserrat font-semibold text-sm">
+                <i class="fa-solid fa-truck" style="margin-right: 0.8rem;"></i>
+                {{ section.settings.shipping_label }}*
+              </div>
+              {% endif %}
+            {% endif %}
+          </div> 
+          </template>
+          {% if rating %}
+          <div class="sm:my-8 mb-4 flex items-center">
+            <div class="rateyos" data-rateyo-rating="{{ section.settings.rating_stars }}" data-rateyo-num-stars="5"></div>
+            <div class="flex justify-between items-center max-w-[275px] gap-1">
+              <span class="font-montserrat text-primaryTxt font-medium text-xs opacity-[.75]">{{ section.settings.rating_stars }} Ratings</span>
+              <i class="fa-solid fa-circle" style="font-size: 5px;"></i>
+              <span class="font-montserrat text-primaryTxt font-medium text-xs opacity-[.75]">{{ section.settings.review_amount }}</span>
+    
+            </div>
+          </div>
+          {% endif %}
+
+          {% form 'product', product %}
+            <div class="hidden md:block lg:hidden">
+              {% comment %}    Product Variants & Quantity For Desktop    {% endcomment %}
+              {% render 'product-variants' %}
+              {% comment %}    End Of Product Variants & Quantity For Desktop    {% endcomment %}
+            </div>
+          {% endform %}
+        </div>
+        {% comment %}    Product Form For Tablet     {% endcomment %}
+        <div class="hidden md:block lg:hidden w-1/2 h-[50%] order-shadow mb-[50px]"> 
+          {% render 'product-form' %}
+        </div>
+        {% comment %}    End Of Product Form For Tablet    {% endcomment %}
+      </div>
+      
+      {% form 'product', product %}
+      <div class="md:hidden lg:block">
+        {% comment %}    Product Variants & Quantity For Mobile/Tablet    {% endcomment %}
+        {% render 'product-variants' %}
+        {% comment %}    End Of Product Variants & Quantity For Mobile/Tablet    {% endcomment %}
+        
+      </div>
+      {% endform %}
+    {% comment %}    Product Form For Mobile    {% endcomment %}
+    <div class="h-[50%] md:hidden mb-[30px]">
+      {% render 'product-form' %}
+      <hr class="h-[1px] my-[24px]">
+    </div>
+    {% comment %}    End For Mobile Product Form    {% endcomment %}
+
+      <div>
+        <div class="flex justify-around mb-8">
+          <span class="text-base py-[10px] tab-item selected-tab font-open {% if rating %}w-1/2{% else %}w-full{% endif %}" data-id="about-container" @click="changeTab('about-container')">About Item</span>
+          {% if rating %}<span class="text-base py-[10px] tab-item font-open w-1/2" data-id="reviews-container" @click="changeTab('reviews-container')">Reviews</span>{% endif %}
+        </div> 
+        <div>
+          
+          {% comment %}    Product Details    {% endcomment %}
+          
+          {% render 'product-details' %}
+          
+          {% comment %}    End Of Product Details    {% endcomment %}
+          
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'review_metafield' %}
+              {% liquid
+                assign star = block.settings.first_rating
+                assign star2 = block.settings.second_rating
+                assign quote = block.settings.first_quote
+                assign quote2 = block.settings.second_quote
+                assign review = block.settings.first_review
+                assign review2 = block.settings.second_review
+                assign image = block.settings.first_image
+                assign image2 = block.settings.second_image
+                assign name = block.settings.first_name
+                assign name2 = block.settings.second_name
+              %}
+              <div class="text-info-container" id="reviews-container">
+                {% if star != blank %}
+                  <div class="mt-[3.2rem]">
+                    <div class="flex items center">
+                      <div class="rateyos" data-rateyo-rating="{{ star }}" data-rateyo-num-stars="5"></div>
+                      <span class="font-normal text-[16px] leading-[200%] font-inter text-primaryTxt">{{ quote }}</span>
+                    </div>
+                    <span class="font-bold text-[16px] leading-[200%] mt-[.8rem] font-montserrat">AU ${ variant_price }</span>
+                    <p class="font-normal text-[14px] leading-[200%] text-[#272727b3] mt-[.8rem] font-inter text-primaryTxt opacity-[.75]">{{ review }}</p>
+                    <div class="flex items-center mt-[.8rem]">
+                      <div class="h-[56px] w-[56px] mr-[24px]">
+                        {% if image != nil %}
+                          <img src="{{ image | img_url: 'master' }}" alt="{{ image.alt }}">
+                        {% else %}
+                          <img src="{{ 'e.png' | asset_img_url: 'master' }}" alt="Profile Account" class="rounded-full">
+                        {% endif %}
+                      </div>
+                      <div class="flex flex-col">
+                        <span class="font-bold text-[20px] leading-[24px] font-inter text-primaryTxt">{{ name }}</span>
+                        <span class="italic font-normal text-[16px] leading-[20px] mt-[.8rem] font-montserrat">
+                          <i class="fa-solid mr-[.8rem] text-[#59e08f] fa-circle-check"></i>
+                          Order confirmed
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+                <hr class="bg-primaryTxt h-2 mt-[3.2rem] opacity-5">
+                {% if star2 != blank %}
+                  <div class="mt-[3.2rem]">
+                    <div class="flex items center">
+                      <div class="rateyos" data-rateyo-rating="{{ star2 }}" data-rateyo-num-stars="5"></div>
+                      <span class="font-normal text-[16px] leading-[200%] font-inter text-primaryTxt">{{ quote2 }}</span>
+                    </div>
+                    <span class="font-bold text-[16px] leading-[200%] mt-[.8rem] font-montserrat">AU ${ variant_price }</span>
+                    <p class="font-normal text-[14px] leading-[200%] text-[#272727b3] mt-[.8rem] font-inter text-primaryTxt opacity-[.75]">{{ review2 }}</p>
+                    <div class="flex items-center mt-[.8rem]">
+                      <div class="h-[56px] w-[56px] mr-[24px]">
+                        {% if image2 != nil %}
+                          <img src="{{ image2 | img_url: 'master' }}" alt="{{ image2.alt }}">
+                        {% else %}
+                          <img src="{{ 'e.png' | asset_img_url: 'master' }}" alt="Profile Account" class="rounded-full">
+                        {% endif %}
+                      </div>
+                      <div class="flex flex-col">
+                        <span class="font-bold text-[20px] leading-[24px] font-inter text-primaryTxt">{{ name2 }}</span>
+                        <span class="italic font-normal text-[16px] leading-[20px] mt-[.8rem] font-montserrat">
+                          <i class="fa-solid mr-[.8rem] text-[#59e08f] fa-circle-check"></i>
+                          Order confirmed
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+            {% endcase %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% comment %}    Product Form For Desktop    {% endcomment %}
+    <div class="lg:w-2/3 h-[50%] hidden lg:block order-shadow">
+      {% render 'product-form' %}
+    </div>
+    {% comment %}    End Of Product Form For Desktop    {% endcomment %}
+  </div>
+</div>
+
+<script>
+var { createApp } = Vue;
+const appProduct = createApp({  
+  delimiters: ['${', '}'],
+  //Here is the changes to do
+  data() {
+    loading = true;
+    return {
+      qty: 1,
+      id: "",
+      raw_price: {{ product.price }},
+      variant_price: "",
+      variant_compare_price: "",
+      variants: "",
+      selected: [],
+      addingToCart: false,
+      form: {
+        selections: "",
+        options: ""
+      },
+      current_media: {{ product.media | json }},
+      selected_media: {{ product.media[0] | json}},
+      loading
+    }
+  },
+  //Up to here the changes
+
+  created() {
+  /*Get all product data*/
+    fetch("/products/{{ product.handle }}.js")
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error(response.status);
+      }
+    })
+    .then(data => {
+      const productData = data;
+      const formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, vmaximumFractionDigits: 2, });
+
+      this.id = productData.id;
+      this.form.options = productData.options.map(item => ({...item, visible: false}));
+      this.variants = productData.variants;
+      this.variant_price = formatter.format((productData.variants[0].price/100).toFixed(2));
+      this.variant_compare_price = formatter.format((productData.variants[0].compare_at_price/100).toFixed(2));
+       
+      productData.options.map(item => this.selected.push(item.values[0]));
+      this.form.selections = [
+        this.selected[0] ? this.selected[0] : null,
+        this.selected[1] ? this.selected[1] : null,
+        this.selected[2] ? this.selected[2] : null
+      ];
+      this.loading = false;
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  },
+  computed: {
+    totalPrice() {
+      const formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD',  minimumFractionDigits: 2, vmaximumFractionDigits: 2, });
+      let rawTotal = this.raw_price * this.qty
+      return formatter.format((rawTotal/100).toFixed(2));
+    }
+  },
+  methods: {
+    //Here is the changes to do
+    changeTab(id){
+      const tabs = document.getElementsByClassName('tab-item')
+      const infoContainers = document.getElementsByClassName('text-info-container')
+      for (const tab of tabs) {
+        tab.classList.remove('selected-tab')
+        if(tab.getAttribute('data-id') == id) {
+          tab.classList.add('selected-tab')
+        }
+      }
+      for (const infoContainer of infoContainers) {
+        infoContainer.classList.remove('selected-tab-container')
+        if(infoContainer.id == id) {
+          infoContainer.classList.add('selected-tab-container')
+        }
+      }
+    },
+    //Up to here the changes
+    //Change Price
+    changePrice(e) {
+      const formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD',  minimumFractionDigits: 2, vmaximumFractionDigits: 2, });
+      let selectedVariant;
+      this.variants.forEach(variant => {
+        if (variant.option1 == this.form.selections[0] && variant.option2 == this.form.selections[1] && variant.option3 == this.form.selections[2]) {
+          selectedVariant = variant;
+        }
+      });
+      if(selectedVariant.featured_image) {
+        this.selected_media = selectedVariant.featured_image;
+      }
+      this.raw_price = selectedVariant.price;
+      this.variant_price = formatter.format((selectedVariant.price/100).toFixed(2));
+      this.variant_price = formatter.format((selectedVariant.price/100).toFixed(2));
+      this.variant_compare_price = formatter.format((selectedVariant.compare_at_price/100).toFixed(2));
+
+    },
+
+    //Add to cart funtion
+    addToCart(e) {
+      e.preventDefault();
+      this.addingToCart = true;
+      let selectedVariant;
+      this.variants.forEach(variant => {
+        if (variant.option1 == this.form.selections[0] && variant.option2 == this.form.selections[1] && variant.option3 == this.form.selections[2]) {
+          selectedVariant = variant;
+        }
+      });
+
+      var data = {
+        'items': [{
+          id: selectedVariant.id,
+          quantity: this.qty
+        }]
+      };
+      var options = {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      };
+      fetch('/cart/add.js', options)
+        .then(response => {
+          if (response.ok) {
+            return response.json()
+          } else {
+            throw new Error(response.status);
+          }
+        })
+        .then(data => {
+          const options = {
+              method: "GET"
+          };
+          fetch("/cart.js", options)
+            .then( response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error(response.status);
+                }
+            })
+            .then(data => {
+                const cartData = data;
+                const counter = document.getElementById('cart-counter');
+                counter.textContent = cartData.item_count;
+            })
+            .catch(err => {
+                console.error("Error:", err)
+            });
+          this.addingToCart = false;
+        })
+        .catch(error => {
+          console.log(error)
+        });
+    },
+    buyNow() {
+      let selectedVariant;
+      this.variants.forEach(variant => {
+        if (variant.option1 == this.form.selections[0] && variant.option2 == this.form.selections[1] && variant.option3 == this.form.selections[2]) {
+          selectedVariant = variant;
+        }
+      });
+      window.location.href = '/cart/' + selectedVariant.id + ':' + this.qty;
+    },
+    increment() {
+      this.qty++
+    },
+    decrement() {
+      if (this.qty > 1) {
+        this.qty--
+      }
+    }
+  }
+});
+appProduct.mount('#product')
+
+</script>
+<script src="{{ 'share.js' | asset_url }}" defer="defer"></script>
+<script>
+//Product gallery slider
+
+//Thumbs images
+const swiper2 = new Swiper('.swiper2', {
+    slidesPerView: 3,
+    spaceBetween:20,
+    autoHeight:true,
+    breakpoints: {
+      1024: {
+        slidesPerView: 4,
+        spaceBetween:45
+      },
+      480: {
+        slidesPerView: 4,
+      },
+    }     
+});
+
+//Main gallery
+window.onload = function(){
+  const swiper = new Swiper('.swiper1', {
+    loop: true,
+    autoHeight:true,
+    pagination: {
+      el: ".swiper-pagination",
+    },  
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    thumbs: {
+      swiper: swiper2,
+    },
+  });
+}
+</script>
+<script>
+$(function () {
+  $(".rateyos").rateYo({
+   readOnly:true
+  })
+})
+</script>
+
+{% schema %}
+{   
+  "name": "Product details",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "title",
+      "label": "Show Title",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "price",
+      "label": "Show Price",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "shipping",
+      "label": "Show Free Shipping Label",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "sale_label",
+      "label": "Label For Sale Badge"
+    },
+    {
+      "type": "text",
+      "id": "shipping_label",
+      "label": "Label For Shipping Badge"
+    },
+    {
+      "type": "checkbox",
+      "id": "rating",
+      "label": "Show Rating",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "rating_stars",
+      "label": "Amount Of Rating"
+    },
+    {
+      "type": "text",
+      "id": "review_amount",
+      "label": "Amount Of Reviews"
+    },
+    {
+      "type": "checkbox",
+      "id": "variant",
+      "label": "Show Variants",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "picker_type",
+      "options": [
+        {
+          "value": "select",
+          "label": "Select"
+        },
+        {
+          "value": "btn",
+          "label": "Buttons"
+        }
+      ],
+      "label": "Variant Selector"
+    },
+    {
+      "type": "checkbox",
+      "id": "quantity",
+      "label": "Show Quantity selector",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "buy_now",
+      "label": "Show Buy Now Btn",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "desc",
+      "label": "Show Description",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "shipping_info",
+      "label": "Shipping Information"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "desc",
+      "name": "Short Description",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "little_desc",
+          "label": "Short Description"
+        }
+      ]
+    },
+    {
+      "type": "metafield_details",
+      "name": "Metafield Details",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "firstitem",
+          "label": "First Item"
+        },
+        {
+          "type": "text",
+          "id": "brand",
+          "label": "First Item Label"
+        },
+        {
+          "type": "text",
+          "id": "seconditem",
+          "label": "Second Item"
+        },
+        {
+          "type": "text",
+          "id": "material",
+          "label": "Second Item Label"
+        },
+        {
+          "type": "text",
+          "id": "thirditem",
+          "label": "Third Item"
+        },
+        {
+          "type": "text",
+          "id": "weight",
+          "label": "Third Item Label"
+        },
+        {
+          "type": "text",
+          "id": "fourthitem",
+          "label": "Fourth Item"
+        },
+        {
+          "type": "text",
+          "id": "condition",
+          "label": "Fourth Item Label"
+        },
+        {
+          "type": "text",
+          "id": "fifthitem",
+          "label": "Fifth Item"
+        },
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Fifth Item Label"
+        },
+        {
+          "type": "checkbox",
+          "id": "options",
+          "label": "Show Product Options",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "contact",
+      "name": "Contact Email",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "contact",
+          "label": "Contact Email"
+        }
+      ]
+    },
+    {
+      "type": "share",
+      "name": "t:sections.main-product.blocks.share.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "share_label",
+          "label": "t:sections.main-product.blocks.share.settings.text.label",
+          "default": "Share"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.main-product.blocks.share.settings.featured_image_info.content"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.main-product.blocks.share.settings.title_info.content"
+        }
+      ]
+    },
+    {
+      "type": "review_metafield",
+      "name": "Review Metafield",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "First Review"
+        },
+        {
+          "type": "text",
+          "id": "first_rating",
+          "label": "Rating Amount"
+        },
+        {
+          "type": "text",
+          "id": "first_quote",
+          "label": "Review Quote"
+        },
+        {
+          "type": "text",
+          "id": "first_review",
+          "label": "Review"
+        },
+        {
+          "type": "image_picker",
+          "id": "first_image",
+          "label": "Reviewer Image"
+        },
+        {
+          "type": "text",
+          "id": "first_name",
+          "label": "Reviewer Name"
+        },
+        {
+          "type": "header",
+          "content": "Second Review"
+        },
+        {
+          "type": "text",
+          "id": "second_rating",
+          "label": "Rating Amount"
+        },
+        {
+          "type": "text",
+          "id": "second_quote",
+          "label": "Review Quote"
+        },
+        {
+          "type": "text",
+          "id": "second_review",
+          "label": "Review"
+        },
+        {
+          "type": "image_picker",
+          "id": "second_image",
+          "label": "Reviewer Image"
+        },
+        {
+          "type": "text",
+          "id": "second_name",
+          "label": "Reviewer Name"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+{% stylesheet %}
+  .rating {
+  display: inline-block;
+  margin: 0;
+}
+@-webkit-keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  -webkit-animation: spin 1s linear infinite;
+          animation: spin 1s linear infinite;
+}
+
+.product .rating-star {
+  --letter-spacing: 0.8;
+  --font-size: 1.7;
+}
+.jq-ry-container>.jq-ry-group-wrapper>.jq-ry-group>svg{
+  height:20px
+}
+.card-wrapper .rating-star {
+  --letter-spacing: 0.7;
+  --font-size: 1.4;
+}
+
+.rating-star {
+  --percent: calc(
+    (
+        var(--rating) / var(--rating-max) + var(--rating-decimal) *
+          var(--font-size) /
+          (var(--rating-max) * (var(--letter-spacing) + var(--font-size)))
+      ) * 100%
+  );
+  letter-spacing: calc(var(--letter-spacing) * 1rem);
+  font-size: calc(var(--font-size) * 1rem);
+  line-height: 1;
+  display: inline-block;
+  font-family: Times;
+  margin: 0;
+}
+
+.rating-star::before {
+  content: '★★★★★';
+  background: linear-gradient(
+    90deg,
+    var(--color-icon) var(--percent),
+    rgba(var(--color-foreground), 0.15) var(--percent)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right .5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+    print-color-adjust: exact;
+}
+.rating-text {
+  display: none;
+}
+
+.rating-count {
+  display: inline-block;
+  margin: 0;
+}
+
+@media (forced-colors: active) {
+  .rating {
+    display: none;
+  }
+
+  .rating-text {
+    display: block;
+  }
+}
+  .swiper-slide-thumb-active img{
+    border: 1.5px solid #3c3c3c;
+  }
+  .swiper1 .swiper-button-prev,.swiper1 .swiper-button-next{
+    color:#352D0F
+  }
+  .shadow-custom{
+    filter: drop-shadow(25px 19px 13px rgba(0, 0, 0, 0.01)) drop-shadow(14px 11px 11px rgba(0, 0, 0, 0.03)) drop-shadow(6px 5px 8px rgba(0, 0, 0, 0.04)) drop-shadow(2px 1px 4px rgba(0, 0, 0, 0.05)) drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.05));
+  }
+  .order-shadow{
+    box-shadow: 0px 17px 7px rgba(0, 0, 0, 0.01), 0px 10px 6px rgba(0, 0, 0, 0.03), 0px 4px 4px rgba(0, 0, 0, 0.04), 0px 1px 2px rgba(0, 0, 0, 0.05), 0px 0px 0px rgba(0, 0, 0, 0.05);
+  }
+  .tab-item {
+    text-align: center;
+    border-bottom: 0.3rem solid lightgray;
+    cursor: pointer;
+    opacity:.75
+  }
+  .selected-tab {
+    border-bottom: 0.3rem solid black;
+    opacity:1
+  }
+  .text-info-container {
+    display: none;
+  }
+  .selected-tab-container {
+    display: block;
+  }
+{% endstylesheet %}

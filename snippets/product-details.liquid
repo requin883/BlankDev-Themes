@@ -1,0 +1,80 @@
+<!-- product-details Snippet -->
+{% liquid
+    assign description = section.settings.desc
+  %}
+  <div class="text-info-container selected-tab-container" id="about-container">
+    <div class="flex flex-wrap justify-around mb-8">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'metafield_details' %}
+          {% assign brand = block.settings.brand %}
+          {% assign firstitem = block.settings.firstitem %}
+          {% if brand != blank %}
+            <div class="flex w-1/2 gap-2">
+              <span class="text-primary opacity-[.75] font-normal text-[14px] leading-[17px] font-montserrat">{{ firstitem }}</span>
+              <span class="text-[14px] leading-[17px] text-primary font-montserrat font-semibold">{{ brand }}</span>
+            </div>
+          {% endif %}
+          {% assign material = block.settings.material %}
+          {% assign seconditem = block.settings.seconditem %}
+          {% if material != blank %}
+            <div class="flex w-1/2 gap-2">
+              <span class="text-primary opacity-[.75] font-normal text-[14px] leading-[17px] font-montserrat">{{ seconditem }}</span>
+              <span class="text-[14px] leading-[17px] text-primary font-montserrat font-semibold">{{ material }}</span>
+            </div>
+          {% endif %}
+          {% assign weight = block.settings.weight %}
+          {% assign thirditem = block.settings.thirditem %}
+          {% if weight != blank %}
+            <div class="flex w-1/2 gap-2">
+              <span class="text-primary opacity-[.75] font-normal text-[14px] leading-[17px] font-montserrat">{{ thirditem }}</span>
+              <span class="text-[14px] leading-[17px] text-primary font-montserrat font-semibold">{{ weight }}</span>
+            </div>
+          {% endif %}
+          {% assign condition = block.settings.condition %}
+          {% assign fourthitem = block.settings.fourthitem %}
+          {% if condition != blank %}
+            <div class="flex w-1/2 gap-2">
+              <span class="text-primary opacity-[.75] font-normal text-[14px] leading-[17px] font-montserrat">{{ fourthitem }}</span>
+              <span class="text-[14px] leading-[17px] text-primary font-montserrat font-semibold">{{ condition }}</span>
+            </div>
+          {% endif %}
+          {% assign category = block.settings.category %}
+          {% assign fifthitem = block.settings.fifthitem %}
+          {% if category != blank %}
+            <div class="flex w-1/2 gap-2">
+              <span class="text-primary opacity-[.75] font-normal text-[14px] leading-[17px] font-montserrat">{{ fifthitem }}</span>
+              <span class="text-[14px] leading-[17px] text-primary font-montserrat font-semibold">{{ category }}</span>
+            </div>
+          {% endif %}
+          {% assign options = block.settings.options %}
+          {% if options %}
+          <template v-for="(option, index) in form.options" :key="index">
+            <div :for="option.name" class="flex w-1/2 gap-2">
+              <span class="text-primary opacity-[.75] font-normal text-[14px] leading-[17px] font-montserrat">${ option.name }:</span>
+              <span class="text-[14px] leading-[17px] text-primary font-montserrat font-semibold">${ selected[index] }</span>
+            </div>
+          </template>
+          {% endif %}
+        {% endcase %}
+      {% endfor %}
+    </div>
+    <div class="mb-8">
+      {%- if description -%}
+        {%- if product.description != blank -%}
+        <h4 class="text-base font-montserrat font-semibold text-primary">Description:</h4>
+          <div class="mt-[1.6rem] font-montserrat opacity-[.75] text-primary text-sm">
+            {{ product.description }}
+          </div>
+        {%- endif -%}
+      {% endif %}
+    </div>
+  {% if section.settings.shipping_info != blank %}
+    <div class="mb-8">
+      <h4 class="text-base font-montserrat font-semibold text-primary">Shipping Information:</h4>
+      <div class="mt-[1.6rem] font-montserrat opacity-[.75] text-primary text-sm">
+        {{ section.settings.shipping_info }}
+      </div>
+    </div>
+  {% endif %}
+  </div>

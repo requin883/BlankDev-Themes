@@ -1,0 +1,63 @@
+<div class="container mx-auto py-8 w-11/12 xl:max-w-[1200px]">
+{% unless template == 'index' or template == 'cart' or template == 'list-collections' %}
+<nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
+
+  <a href="/" title="Home" class="text-[#131313] font-montserrat text-base font-normal capitalize">Home</a>
+
+  {% if template contains 'page' %}
+
+    <span aria-hidden="true" class="text-[#131313] text-2xl mx-[10px]">›</span>
+
+    <span id="page-title" class="text-[#3D5656]/50 capitalize font-montserrat font-normal text-base">{{ page.title }}</span>
+
+  {% elsif template contains 'collection' %}
+
+    <span aria-hidden="true" class="text-[#131313] text-2xl mx-[10px]">›</span>
+
+    <a href="/collections" class="text-[#131313] font-montserrat text-base font-normal capitalize">Shop</a>
+
+    <span aria-hidden="true" class="text-[#131313] text-2xl mx-[10px]">›</span>
+
+    <span class="text-[#3D5656]/50 capitalize font-montserrat font-normal text-base">{{ collection.title }}</span>
+
+  {% elsif template contains 'product' %}
+    
+    <span aria-hidden="true" class="text-[#131313] text-2xl mx-[10px]">›</span>
+
+    <a href="/collections" class="text-[#131313] font-montserrat text-base font-normal capitalize">Shop</a>
+
+    {% for collection in product.collections %}
+    
+      <span aria-hidden="true" class="text-[#131313] text-2xl mx-[10px]">›</span>
+    
+      <span id="product-collection">
+        <a class="text-[#131313] font-montserrat text-base font-normal capitalize" href="{{ collection.url }}">{{ collection.title }}</a>
+      </span>
+  
+      {% break %}
+      
+    {% endfor %}
+    
+    <span aria-hidden="true" class="text-[#131313] text-2xl mx-[10px]">›</span>
+
+    {% assign ptitle = product.title %}
+    <span id="product-title">
+      <span class="font-montserrat text-base font-normal text-[#3D5656]/50 capitalize">{{ ptitle }}</span>
+    </span>
+
+  {% endif %}
+
+</nav>
+{% endunless %} 
+</div>  
+{% schema %}
+  {
+    "name": "Breadcrumbs",
+    "settings": [],
+    "presets": [
+      {
+        "name": "Breadcrumbs"
+      }
+    ]
+  }
+{% endschema %}

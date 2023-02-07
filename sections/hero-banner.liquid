@@ -1,0 +1,100 @@
+<!-- Hero Banner Section -->
+{% liquid
+  assign sec = section.settings
+  assign prod = sec.product
+  assign top = sec.top_padding
+  assign bottom = sec.bottom_padding
+%}
+<section id="hero-banner">
+  <div {% if sec.hero_bg != nil %}class="bg-[url('{{ sec.hero_bg | img_url: 'master' }}')] object-cover bg-cover bg-center h-[420px] md:h-[664px]"{% endif %}>
+    <div class="container mx-auto md:pt-[{{ top }}px] sm:pb-[{{ bottom }}px] sm:flex sm:justify-{{ sec.align }} pt-[200px] pb-[30px] px-4 xl:max-w-[1200px]">
+      {% if sec.title != blank %}
+        <div>
+          <h1 class="text-white text-[40px] md:text-[64px] font-normal font-open mb-3 md:mb-[22px] md:h-[87px]">{{ sec.title }}</h1>
+          {% if sec.desc !=blank %}
+            <div class="my-8 text-xl sm:text-3xl">{{ sec.desc }}</div>
+          {% endif %}
+          {% if prod.url != nil %}
+            <a href="{{ prod.url }}" class="border border-solid border-white text-white font-medium bg-transparent px-[20px] py-[10px] text-base md:text-2xl uppercase font-montserrat mt-3">discover more</a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "Home Page Hero Banner",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Hero Banner"
+      },
+      {
+        "type": "image_picker",
+        "id": "hero_bg",
+        "label": "Background Image"
+      },
+      {
+        "type": "range",
+        "id": "top_padding",
+        "min": 50,
+        "max": 400,
+        "step": 10,
+        "default": 100,
+        "unit": "t:sections.header.settings.logo_width.unit",
+        "label": "Top Padding For Desktop"
+      },
+      {
+        "type": "range",
+        "id": "bottom_padding",
+        "min": 50,
+        "max": 400,
+        "step": 10,
+        "default": 100,
+        "unit": "t:sections.header.settings.logo_width.unit",
+        "label": "Bottom Padding For Desktop"
+      },
+      {
+        "type": "select",
+        "id": "align",
+        "options": [
+          {
+            "value": "start",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "end",
+            "label": "Right"
+          }
+        ],
+        "default": "start",
+        "label": "Text Box Position For Desktop"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Hero Title"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description"
+      },
+      {
+        "type":"product",
+        "id": "product",
+        "label": "Choose one product"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Home Page Hero Banner"
+      }
+    ]
+  }
+{% endschema %}

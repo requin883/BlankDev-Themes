@@ -1,0 +1,164 @@
+<!-- custom-footer Section -->
+{% liquid
+  assign sec = section.settings
+%}
+
+<footer class="bg-primary py-10">
+  <div class="container xl:max-w-[1200px] mx-auto">
+    {% if section.blocks.size > 0 %}
+    <div class="flex flex-col sm:flex-row justify-center sm:justify-between items-center sm:items-start">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'link_list' %}
+          <div class="sm:w-1/6 {% if forloop.index > 1 %}mt-14{% endif %} sm:mt-0">
+            {% if block.settings.link_heading != blank %}
+              <h2 class="font-open text-[#f8f8f8] font-bold text-xl text-center sm:text-start mb-6">{{ block.settings.link_heading }}</h2>
+            {% endif %}
+            {%- if block.settings.menu != blank -%}
+              <ul class="">
+                {%- for link in block.settings.menu.links -%}
+                  <li class="text-center sm:text-start">
+                    <a href="{{ link.url }}" class="text-[#f8f8f8] font-montserrat text-base font-medium hover:underline">
+                      {{ link.title }}
+                    </a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </div>
+          {% when 'social' %}
+          <div class="sm:w-1/6 mt-14 sm:mt-0">
+            {% if block.settings.social_heading != blank %}
+              <h2 class="font-open text-[#f8f8f8] font-bold text-xl text-center sm:text-start mb-6">{{ block.settings.social_heading }}</h2>
+            {% endif %}
+            {% if block.settings.social %}
+            <ul>
+              {%- if settings.social_instagram_link != blank -%}
+                <li class="mb-5 flex justify-center sm:block sm:justify-start">
+                  <a href="{{ settings.social_instagram_link }}">
+                    {%- render 'icon-instagram' -%}
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_twitter_link != blank -%}
+                <li class="mb-5 flex justify-center sm:block sm:justify-start">
+                  <a href="{{ settings.social_twitter_link }}">
+                    {%- render 'icon-twitter' -%}
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_facebook_link != blank -%}
+                <li class=" flex justify-center sm:block sm:justify-start">
+                  <a href="{{ settings.social_facebook_link }}">
+                    {%- render 'icon-facebook' -%}
+                  </a>
+                </li>
+              {%- endif -%}
+            </ul>
+            {% endif %}
+          </div>
+          {% when 'newsletter' %}
+          <div class="sm:w-1/2 mt-14 sm:mt-0 px-6 sm:px-0">
+          {%- if block.settings.newsletter_heading != blank -%}
+              <h2 class="text-[#f8f8f8] font-bold font-open text-xl sm:mb-8 mb-3 text-center sm:text-start">{{ block.settings.newsletter_heading | escape }}</h2>
+            {%- endif -%}
+            {%- form 'customer', id: 'ContactFooter' -%}
+              <div class="w-full flex gap-3">
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <input
+                  id="NewsletterForm--{{ section.id }}"
+                  type="email"
+                  name="contact[email]"
+                  class="border-b-solid border-b-[1px] border-b-[#f8f8f8] text-[#f8f8f8] font-montserrat font-light text-base bg-transparent w-full"
+                  value="{{ form.email }}"
+                  aria-required="true"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  autocomplete="email"
+                  {% if form.errors %}
+                    autofocus
+                    aria-invalid="true"
+                    aria-describedby="ContactFooter-error"
+                  {% elsif form.posted_successfully? %}
+                    aria-describedby="ContactFooter-success"
+                  {% endif %}
+                  placeholder="Sign Up, leave your email"
+                  required
+                >
+                <button type="submit" class="border-solid border-[1px] border-[#f8f8f8] px-[20px] py-[10px] bg-transparent text-[#f8f8f8] hover:bg-[#f8f8f8] hover:text-primary font-medium font-montserrat text-xl" name="commit" id="Subscribe" aria-label="{{ 'newsletter.button_label' | t }}">
+                  Subscribe
+                </button>
+              </div>
+              {%- if form.errors -%}
+                <small class="newsletter-form__message form__message" id="ContactFooter-error">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</small>
+              {%- endif -%}
+              {%- if form.posted_successfully? -%}
+                <h3 class="newsletter-form__message newsletter-form__message--success form__message" id="ContactFooter-success" tabindex="-1" autofocus>{% render 'icon-success' %}{{ 'newsletter.success' | t }}</h3>
+              {%- endif -%}
+            {%- endform -%}
+            <div class="text-sm font-montserrat text-[#f8f8f8] mt-4 sm:max-w-4/5">{{ block.settings.policy }}</div>
+          </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</footer>
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [],
+    "blocks": [
+      {
+        "type": "link_list",
+        "name": "Menu",
+        "settings": [
+          {
+            "type": "text",
+            "id": "link_heading",
+            "label": "Label For Menu"
+          },
+          {
+            "type": "link_list",
+            "id": "menu",
+            "label": "Choose A Menu"
+          }
+        ]
+      },
+      {
+        "type": "social",
+        "name": "Social Networks",
+        "settings": [
+          {
+            "type": "text",
+            "id": "social_heading",
+            "label": "Heading For Social Networks"
+          },
+          {
+            "type": "checkbox",
+            "id": "social",
+            "label": "Show Social Networks",
+            "default": true
+          }
+        ]
+      },
+      {
+        "type": "newsletter",
+        "name": "Newsletter",
+        "settings": [
+          {
+            "type": "text",
+            "id": "newsletter_heading",
+            "label": "Newsletter Heading"
+          },
+          {
+            "type": "richtext",
+            "id": "policy",
+            "label": "Privacy And Policy Description"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

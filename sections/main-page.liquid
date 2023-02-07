@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="{{ 'section-main-page.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" media="print" onload="this.media='all'">
+
+<noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="mb-10 mx-auto container w-11/12 xl:max-w-[1200px]">
+  <h1 class="page-title text-[40px] md:text-[64px]">
+    {{ page.title | escape }}
+  </h1>
+  {% if page.content != blank %}
+  <div class="text-base text-primaryTxt py-10">
+    {{ page.content }}
+  </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-page.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

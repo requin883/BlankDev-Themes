@@ -1,0 +1,81 @@
+{
+  "sections": {
+    "breadcrumb": {
+      "type": "breadcrumb",
+      "settings": {
+      }
+    },
+    "main": {
+      "type": "product-vue",
+      "blocks": {
+        "4b58f6e4-f187-4822-aba3-db5b2f97f458": {
+          "type": "desc",
+          "settings": {
+            "little_desc": "Enjoy carrying your makeup in this stylish, large capacity makeup bag!"
+          }
+        },
+        "db999edc-45d1-44bf-8a97-decf59b1a8cd": {
+          "type": "metafield_details",
+          "settings": {
+            "firstitem": "",
+            "brand": "",
+            "seconditem": "",
+            "material": "",
+            "thirditem": "",
+            "weight": "",
+            "fourthitem": "",
+            "condition": "",
+            "fifthitem": "",
+            "category": "",
+            "options": true
+          }
+        },
+        "51a75dae-7b7f-4592-a654-21f4a88efcfa": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share Product"
+          }
+        },
+        "105ebac2-42d4-443d-8310-bc3a4e90a82c": {
+          "type": "review_metafield",
+          "settings": {
+            "first_rating": "",
+            "first_quote": "",
+            "first_review": "",
+            "first_name": "",
+            "second_rating": "",
+            "second_quote": "",
+            "second_review": "",
+            "second_name": ""
+          }
+        }
+      },
+      "block_order": [
+        "4b58f6e4-f187-4822-aba3-db5b2f97f458",
+        "db999edc-45d1-44bf-8a97-decf59b1a8cd",
+        "51a75dae-7b7f-4592-a654-21f4a88efcfa",
+        "105ebac2-42d4-443d-8310-bc3a4e90a82c"
+      ],
+      "settings": {
+        "title": true,
+        "price": true,
+        "shipping": true,
+        "sale_label": "On Sale",
+        "shipping_label": "Free Shipping",
+        "rating": true,
+        "rating_stars": "4.5",
+        "review_amount": "50 Reviews",
+        "variant": true,
+        "picker_type": "select",
+        "quantity": true,
+        "buy_now": true,
+        "desc": true,
+        "shipping_info": "Postage for free within Australia!"
+      }
+    }
+  },
+  "order": [
+    "breadcrumb",
+    "main"
+  ]
+}
