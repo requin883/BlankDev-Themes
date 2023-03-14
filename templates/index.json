@@ -129,29 +129,37 @@
     },
     "3689cf1d-c0e6-4d3b-9232-10036221fa92": {
       "type": "manual-rating",
-      "disabled": true,
       "blocks": {
         "9de7cce3-c9c4-4fd8-b803-86be4eb455b8": {
           "type": "review",
           "settings": {
+            "rating": "shopify:\/\/shop_images\/rating.png",
             "desc": "<p>This is a solid jacket. It fits nice. My wife loves it.<\/p>",
+            "pic": "shopify:\/\/shop_images\/Tom.png",
             "name": "Tom Harris",
+            "check": "shopify:\/\/shop_images\/verified.png",
             "order": "Order confirmed"
           }
         },
         "5ac1be6a-9938-4d3c-8ef6-5237b5d40192": {
           "type": "review",
           "settings": {
+            "rating": "shopify:\/\/shop_images\/rating.png",
             "desc": "<p>Best and durable jacket.<\/p>",
+            "pic": "shopify:\/\/shop_images\/Theresa.png",
             "name": "Esther Howard",
+            "check": "shopify:\/\/shop_images\/verified.png",
             "order": "Order confirmed"
           }
         },
         "0d507268-381c-462e-9835-383037cea5ad": {
           "type": "review",
           "settings": {
+            "rating": "shopify:\/\/shop_images\/rating.png",
             "desc": "<p>I highly recommend this jacket for what it cost and the quality you get with it.<\/p>",
+            "pic": "shopify:\/\/shop_images\/Esther.png",
             "name": "Tom Harris",
+            "check": "shopify:\/\/shop_images\/verified.png",
             "order": "Order confirmed"
           }
         },
