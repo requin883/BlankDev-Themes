@@ -32,8 +32,8 @@
       </div>
       <div class="grid justify-items-{% if section.settings.text_horizontal_alignment == 'left'%}start{%else%}end{%endif%}">
         <div>
-          <a href="#" class="underline text-[#2A8A97] text-[16px]">{{ section.settings.redirect_link_text }}</a>
-          <span>{% render 'icon-chevron-right' %}</span>
+          <a href="#" class="underline inline text-[#2A8A97] text-[16px]">{{ section.settings.redirect_link_text }}</a>
+          <span class="inline">{% render 'icon-chevron-right' %}</span>
         </div>
       </div>
     </div>
