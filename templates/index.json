@@ -92,25 +92,29 @@
         "36d031e3-be7a-4d68-b916-315f8d6a67ea": {
           "type": "logos",
           "settings": {
-            "logo_desc": ""
+            "logo": "shopify:\/\/shop_images\/snow.png",
+            "logo_desc": "<p>“A versatile mood for a dynamic life.”<\/p>"
           }
         },
         "f3f1728b-f672-42cc-8bfb-00137a1f4e2d": {
           "type": "logos",
           "settings": {
-            "logo_desc": ""
+            "logo": "shopify:\/\/shop_images\/Katia.png",
+            "logo_desc": "<p>“An amazing quality and confort.”<\/p>"
           }
         },
         "5cb38f9b-0a78-481d-994a-eb774615b1f5": {
           "type": "logos",
           "settings": {
-            "logo_desc": ""
+            "logo": "shopify:\/\/shop_images\/snowy_mountains.png",
+            "logo_desc": "<p>“Face the winter with style.”<\/p>"
           }
         },
         "e188c3ca-81b4-4af3-a5fb-a4d8cddc639e": {
           "type": "logos",
           "settings": {
-            "logo_desc": ""
+            "logo": "shopify:\/\/shop_images\/Esquire.png",
+            "logo_desc": "<p>“All the good thigs with All Terrain jackets.”<\/p>"
           }
         }
       },
