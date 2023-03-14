@@ -135,6 +135,7 @@
           "settings": {
             "rating": "shopify:\/\/shop_images\/rating.png",
             "desc": "<p>This is a solid jacket. It fits nice. My wife loves it.<\/p>",
+            "desc2": "It’s perfect!",
             "pic": "shopify:\/\/shop_images\/Tom.png",
             "name": "Tom Harris",
             "check": "shopify:\/\/shop_images\/verified.png",
@@ -146,6 +147,7 @@
           "settings": {
             "rating": "shopify:\/\/shop_images\/rating.png",
             "desc": "<p>I highly recommend this jacket for what it cost and the quality you get with it.<\/p>",
+            "desc2": "Warm, cozy jacket",
             "pic": "shopify:\/\/shop_images\/Theresa.png",
             "name": "Esther Howard",
             "check": "shopify:\/\/shop_images\/verified.png",
@@ -157,6 +159,7 @@
           "settings": {
             "rating": "shopify:\/\/shop_images\/rating.png",
             "desc": "<p>Best and durable jacket.<\/p>",
+            "desc2": "Five stars",
             "pic": "shopify:\/\/shop_images\/Esther.png",
             "name": "Tom Harris",
             "check": "shopify:\/\/shop_images\/verified.png",
@@ -167,6 +170,7 @@
           "type": "review",
           "settings": {
             "desc": "<p>I highly recommend this jacket for what it cost and the quality you get with it.<\/p>",
+            "desc2": "",
             "name": "Theresa Webb",
             "order": "Order confirmed"
           }
