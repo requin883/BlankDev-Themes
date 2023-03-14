@@ -12,6 +12,7 @@
       <div class="swiper-wrapper mb-[56px] max-h-[300px]">
         {% for block in section.blocks %}
           {% liquid
+            assign desc2 = block.settings.desc2
             assign rating = block.settings.rating
             assign desc = block.settings.desc
             assign name = block.settings.name
@@ -21,6 +22,7 @@
           %}
 
           <div class="swiper-slide h-[204px] px-10 pb-8 md:border-r">
+            <p class="font-bold text-[20px] font-montserrat">{{ desc2 }}</p>
             <picture>
               <img src="{{ rating | img_url: 'master' }}" alt="{{ rating.alt }}">
             </picture>
@@ -123,6 +125,11 @@
           "type": "richtext",
           "id": "desc",
           "label": "Review"
+        },
+        {
+          "type": "text",
+          "id": "desc2",
+          "label": "Review2"
         },
         {
           "type": "image_picker",
