@@ -219,7 +219,7 @@
         "type": "custom-header",
         "settings": {
           "name": "",
-          "logo": "shopify:\/\/shop_images\/Logo_all_terrain.png",
+          "logo": "shopify:\/\/shop_images\/logo_db208608-025e-4c32-8ef6-5e4b09e53973.png",
           "logo_width": 100,
           "menu_links": "main-menu"
         }
@@ -231,14 +231,14 @@
             "type": "link_list",
             "settings": {
               "link_heading": "Company",
-              "menu": "company"
+              "menu": ""
             }
           },
           "619988b4-bb34-4577-905d-8ec2be756480": {
             "type": "link_list",
             "settings": {
               "link_heading": "Help",
-              "menu": "help"
+              "menu": ""
             }
           },
           "8a49eb96-0145-4045-a30c-fd1ac6dab185": {
