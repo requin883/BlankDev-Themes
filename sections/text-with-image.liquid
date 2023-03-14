@@ -5,79 +5,112 @@
   assign title = section.settings.sec_title
 %}
 
-
 <div class="container mx-auto mb-6 md:mb-20 xl:max-w-[1200px]">
   {% if title != blank %}
-  <div class="mb-14">
-    <h2 class="text-4xl md:text-[40px] lg:text-5xl font-bold text-center font-open">{{ title }}</h2>
-  </div>
+    <div class="mb-14">
+      <h2 class="text-4xl md:text-[40px] lg:text-5xl font-bold text-center font-open">{{ title }}</h2>
+    </div>
   {% endif %}
   <div class="bg-light flex items-center {% if sec.reverse == true %}md:flex-row-reverse{% else %}md:flex-row{% endif %} flex-col-reverse lg:w-full mx-auto md:h-[360px] card-shadow w-11/12">
     <div class="pt-8 p-4 md:p-8 md:w-1/2 lg:px-28 lg:w-3/5">
       <div class="sm:max- sm:mx-auto">
-        <h2 class="text-primaryTxt text-2xl md:text-[40px] font-bold font-open {% if sec.reverse %}sm:text-end{% endif %}">{{ sec.title }}</h2>
-        <div class="text-sm md:text-base mt-4 text-secondaryTxt font-montserrat {% if sec.reverse %}sm:text-end{% endif %}">{{ sec.desc }}</div>
+        <h2 class="text-primaryTxt text-2xl md:text-[40px] font-bold font-open {% if sec.reverse %}sm:text-end{% endif %}">
+          {{ sec.title }}
+        </h2>
+        <div class="text-sm md:text-base mt-4 text-secondaryTxt font-montserrat {% if sec.reverse %}sm:text-end{% endif %}">
+          {{ sec.desc }}
+        </div>
         {% if prod.url != blank %}
           <div class="mt-8">
-            <a href="{{ prod.url }}" class="text-secondary text-base md:text-2xl font-montserrat hover:underline flex gap-5 font-medium items-center {% if sec.reverse %}sm:justify-end{% endif %}">Shop now {% render 'shop-arrow' %}</a>
+            <a
+              href="{{ prod.url }}"
+              class="text-secondary text-base md:text-2xl font-montserrat hover:underline flex gap-5 font-medium items-center {% if sec.reverse %}sm:justify-end{% endif %}"
+              >Shop now {% render 'shop-arrow' -%}
+            </a>
           </div>
         {% endif %}
       </div>
     </div>
-    {% if sec.image != nil %}
-    <div class="w-full md:w-1/2 lg:w-2/5">
+    {% if sec.image != null %}
+      <div class="w-full md:w-1/2 lg:w-2/5">
         <img src="{{ sec.image | img_url: 'master' }}" alt="{{ sec.image.alt }}" class="object-cover w-full h-[360px]">
-    </div>
+      </div>
     {% endif %}
+  </div>
+  <div class="grid justify-items-{% if section.settings.text_horizontal_alignment == 'left'%}start{%else%}end{%endif%}">
+    <div>
+      <a href="#" class="underline text-[#2A8A97] text-[16px]">{{ section.settings.redirect_link_text }}</a>
+      <span>{% render 'icon-chevron-right' %}</span>
+    </div>
   </div>
 </div>
 
-
 {% schema %}
-  {
-    "name": "Text With Image",
-    "settings": [
-      {
-        "type": "text",
-        "id": "sec_title",
-        "label": "Section Title"
-      },
-      {
-        "type": "checkbox",
-        "id": "reverse",
-        "label": "Invert Flex Direction",
-        "default": false
-      },
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Card Title"
-      },
-      {
-        "type": "richtext",
-        "id": "desc",
-        "label": "Card Description"
-      },
-      {
-        "type": "product",
-        "id": "product",
-        "label": "Product Redirect"
-      },
-      {
-        "type": "image_picker",
-        "id": "image",
-        "label": "Card Image"
-      }
-    ],
-    "presets": [
-      {
-        "name": "Text With Image Section"
-      }
-    ]
-  }
+{
+  "name": "Text With Image",
+  "settings": [
+    {
+      "type": "text",
+      "id": "sec_title",
+      "label": "Section Title"
+    },
+    {
+      "type": "checkbox",
+      "id": "reverse",
+      "label": "Invert Flex Direction",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Card Title"
+    },
+    {
+      "type": "richtext",
+      "id": "desc",
+      "label": "Card Description"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product Redirect"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Card Image"
+    },
+    {
+      "type": "select",
+      "id": "text_horizontal_alignment",
+      "label": "Select text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "left"
+        },
+        {
+          "value": "right",
+          "label": "right"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "redirect_link_text",
+      "label": "Input text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text With Image Section"
+    }
+  ]
+}
 {% endschema %}
 {% stylesheet %}
-  .card-shadow{
-    box-shadow: 11px 40px 17px rgba(0, 0, 0, 0.01), 6px 23px 14px rgba(0, 0, 0, 0.05), 3px 10px 10px rgba(0, 0, 0, 0.09), 1px 3px 6px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+  .card-shadow {
+    box-shadow: 11px 40px 17px rgba(0, 0, 0, 0.01), 6px 23px 14px rgba(0, 0, 0, 0.05), 3px 10px 10px rgba(0, 0, 0, 0.09),
+      1px 3px 6px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
   }
 {% endstylesheet %}
