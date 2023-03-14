@@ -30,18 +30,18 @@
           </div>
         {% endif %}
       </div>
+      <div class="grid justify-items-{% if section.settings.text_horizontal_alignment == 'left'%}start{%else%}end{%endif%}">
+        <div>
+          <a href="#" class="underline text-[#2A8A97] text-[16px]">{{ section.settings.redirect_link_text }}</a>
+          <span>{% render 'icon-chevron-right' %}</span>
+        </div>
+      </div>
     </div>
     {% if sec.image != null %}
       <div class="w-full md:w-1/2 lg:w-2/5">
         <img src="{{ sec.image | img_url: 'master' }}" alt="{{ sec.image.alt }}" class="object-cover w-full h-[360px]">
       </div>
     {% endif %}
-  </div>
-  <div class="grid justify-items-{% if section.settings.text_horizontal_alignment == 'left'%}start{%else%}end{%endif%}">
-    <div>
-      <a href="#" class="underline text-[#2A8A97] text-[16px]">{{ section.settings.redirect_link_text }}</a>
-      <span>{% render 'icon-chevron-right' %}</span>
-    </div>
   </div>
 </div>
 
