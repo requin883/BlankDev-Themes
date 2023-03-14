@@ -231,14 +231,14 @@
             "type": "link_list",
             "settings": {
               "link_heading": "Company",
-              "menu": ""
+              "menu": "company-menu"
             }
           },
           "619988b4-bb34-4577-905d-8ec2be756480": {
             "type": "link_list",
             "settings": {
               "link_heading": "Help",
-              "menu": ""
+              "menu": "help-menu"
             }
           },
           "8a49eb96-0145-4045-a30c-fd1ac6dab185": {
