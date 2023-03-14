@@ -3,7 +3,7 @@
     "ea206a4f-b4ff-4289-896b-e67cf4c79f21": {
       "type": "hero-banner",
       "settings": {
-        "hero_bg": "shopify:\/\/shop_images\/BlackBg.webp",
+        "hero_bg": "shopify:\/\/shop_images\/Hero_section.png",
         "top_padding": 400,
         "bottom_padding": 50,
         "align": "start",
