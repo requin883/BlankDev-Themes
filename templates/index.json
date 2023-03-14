@@ -145,7 +145,7 @@
           "type": "review",
           "settings": {
             "rating": "shopify:\/\/shop_images\/rating.png",
-            "desc": "<p>Best and durable jacket.<\/p>",
+            "desc": "<p>I highly recommend this jacket for what it cost and the quality you get with it.<\/p>",
             "pic": "shopify:\/\/shop_images\/Theresa.png",
             "name": "Esther Howard",
             "check": "shopify:\/\/shop_images\/verified.png",
@@ -156,7 +156,7 @@
           "type": "review",
           "settings": {
             "rating": "shopify:\/\/shop_images\/rating.png",
-            "desc": "<p>I highly recommend this jacket for what it cost and the quality you get with it.<\/p>",
+            "desc": "<p>Best and durable jacket.<\/p>",
             "pic": "shopify:\/\/shop_images\/Esther.png",
             "name": "Tom Harris",
             "check": "shopify:\/\/shop_images\/verified.png",
