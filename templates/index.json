@@ -57,7 +57,9 @@
         "reverse": false,
         "title": "Hoodies.",
         "desc": "<p>Designed for a balanced combination of comfort, utility, and durability without the bulky-feel and stay warm without overheating.<\/p>",
-        "product": "coat"
+        "product": "coat",
+        "text_horizontal_alignment": "left",
+        "redirect_link_text": "shop now!"
       }
     },
     "4ccc06d0-8e65-4517-8055-8677421e065b": {
@@ -67,7 +69,9 @@
         "reverse": true,
         "title": "Jeans.",
         "desc": "<p>Whether you prefer a classic straight leg, a trendy skinny fit, or a comfortable bootcut, you'll find your perfect pair in our range.<\/p>",
-        "product": "new-spring-summer-elastic-trousers-black-and-white-ripped-jeans-fashion-sexy-skinny-denim-pencil-pants-s-3"
+        "product": "new-spring-summer-elastic-trousers-black-and-white-ripped-jeans-fashion-sexy-skinny-denim-pencil-pants-s-3",
+        "text_horizontal_alignment": "left",
+        "redirect_link_text": ""
       }
     },
     "d494a819-072e-4f50-8a61-fd494ca172f3": {
@@ -77,7 +81,9 @@
         "reverse": false,
         "title": "T-shirts.",
         "desc": "<p>From classic crewneck tees to trendy graphic designs, you'll find the perfect t-shirt for your wardrobe.<\/p>",
-        "product": "new-spring-summer-elastic-trousers-black-and-white-ripped-jeans-fashion-sexy-skinny-denim-pencil-pants-s-3"
+        "product": "new-spring-summer-elastic-trousers-black-and-white-ripped-jeans-fashion-sexy-skinny-denim-pencil-pants-s-3",
+        "text_horizontal_alignment": "left",
+        "redirect_link_text": ""
       }
     },
     "72931124-1565-4a96-b03d-00423d6ee7c6": {
