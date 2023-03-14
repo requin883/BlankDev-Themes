@@ -1,17 +1,17 @@
 <!-- manual-rating Section -->
-{% liquid 
+{% liquid
   assign title = section.settings.title
 %}
 
-<section id="manual-rating" class="mb-20">
-  <div class="text-center mb-20">
+<section id="manual-rating" class="mb-10">
+  <div class="text-center mb-20 mt-[40px]">
     <h2 class="font-bold font-open sm:text-5xl text-3xl">{{ title }}</h2>
   </div>
   <div class="px-16 w-full">
     <div class="swiper ratings">
       <div class="swiper-wrapper mb-4">
         {% for block in section.blocks %}
-          {% liquid 
+          {% liquid
             assign rating = block.settings.rating
             assign desc = block.settings.desc
             assign name = block.settings.name
@@ -46,19 +46,19 @@
           </div>
         {% endfor %}
       </div>
-      <div class="swiper-button-next hidden md:block"> </div>
-      <div class="swiper-button-prev hidden md:block"> </div>
+      <div class="swiper-button-next hidden md:block"></div>
+      <div class="swiper-button-prev hidden md:block"></div>
       <div class="swiper-pagination static"></div>
     </div>
   </div>
 </section>
 
 <script>
-  var swiper1 = new Swiper('.ratings',{
-    calculateHeight:true,
+  var swiper1 = new Swiper('.ratings', {
+    calculateHeight: true,
     autoHeight: false,
     slidesPerView: 1,
-    spaceBetween:10,
+    spaceBetween: 10,
     loop: true,
     pagination: {
       el: '.swiper-pagination',
@@ -85,71 +85,72 @@
   });
 </script>
 {% stylesheet %}
-  .ratings .swiper-button-next,.ratings .swiper-button-prev{
-    color:#272727;
+  .ratings .swiper-button-next,
+  .ratings .swiper-button-prev {
+    color: #272727;
   }
-  .ratings .swiper-pagination-bullet-active{
-    width:40px;
-    height:2px;
-    background:#272727
+  .ratings .swiper-pagination-bullet-active {
+    width: 40px;
+    height: 2px;
+    background: #272727;
   }
-  .ratings .swiper-pagination-bullet{
-    width:40px;
-    height:2px
+  .ratings .swiper-pagination-bullet {
+    width: 40px;
+    height: 2px;
   }
 {% endstylesheet %}
 {% schema %}
-  {
-    "name": "Manual Rating",
-    "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Section Title"
-      }
-    ],
-    "blocks": [
-      {
-        "type": "review",
-        "name": "Reviews",
-        "settings": [
-          {
-            "type": "image_picker",
-            "id": "rating",
-            "label": "Star Rating"
-          },
-          {
-            "type": "richtext",
-            "id": "desc",
-            "label": "Review"
-          },
-          {
-            "type": "image_picker",
-            "id": "pic",
-            "label": "Reviewer Picture"
-          },
-          {
-            "type": "text",
-            "id": "name",
-            "label": "Name Of The Reviewer"
-          },
-          {
-            "type": "image_picker",
-            "id": "check",
-            "label": "Verified Reviewer"
-          },
-          {
-            "type": "text",
-            "id": "order",
-            "label": "Verified Order"
-          }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "Static Reviews"
-      }
-    ]
-  }
+{
+  "name": "Manual Rating",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Reviews",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "rating",
+          "label": "Star Rating"
+        },
+        {
+          "type": "richtext",
+          "id": "desc",
+          "label": "Review"
+        },
+        {
+          "type": "image_picker",
+          "id": "pic",
+          "label": "Reviewer Picture"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name Of The Reviewer"
+        },
+        {
+          "type": "image_picker",
+          "id": "check",
+          "label": "Verified Reviewer"
+        },
+        {
+          "type": "text",
+          "id": "order",
+          "label": "Verified Order"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Static Reviews"
+    }
+  ]
+}
 {% endschema %}
