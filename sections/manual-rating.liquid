@@ -9,7 +9,7 @@
   </div>
   <div class="px-16 w-full">
     <div class="swiper max-h-[381px] ratings swiper-initialized swiper-horizontal swiper-backface-hidden">
-      <div class="swiper-wrapper max-h-[300px]">
+      <div class="swiper-wrapper mb-[56px] max-h-[300px]">
         {% for block in section.blocks %}
           {% liquid
             assign rating = block.settings.rating
@@ -33,7 +33,7 @@
               </div>
               <div class="flex flex-col justify-between">
                 <div class="font-montserrat font-bold text-xl text-primaryTxt">{{ name }}</div>
-                <div class="flex gap-8">
+                <div class="flex gap-[8px]">
                   <div>
                     <picture>
                       <img src="{{ check | img_url: 'master' }}" alt="{{ check.alt }}">
