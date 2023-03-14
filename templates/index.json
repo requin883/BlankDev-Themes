@@ -3,7 +3,7 @@
     "ea206a4f-b4ff-4289-896b-e67cf4c79f21": {
       "type": "hero-banner",
       "settings": {
-        "hero_bg": "shopify:\/\/shop_images\/hero.png",
+        "hero_bg": "shopify:\/\/shop_images\/BlackBg.webp",
         "top_padding": 400,
         "bottom_padding": 50,
         "align": "start",
@@ -46,7 +46,6 @@
         "b60b9a25-0b4e-488b-bfd2-7d8b6d52ce22"
       ],
       "settings": {
-        "bg": "shopify:\/\/shop_images\/Ellipse_2_353ea847-939c-414d-9403-0e6f41c992c9.png",
         "url": "",
         "label": "LEARN MORE"
       }
@@ -58,8 +57,7 @@
         "reverse": false,
         "title": "Hoodies.",
         "desc": "<p>Designed for a balanced combination of comfort, utility, and durability without the bulky-feel and stay warm without overheating.<\/p>",
-        "product": "coat",
-        "image": "shopify:\/\/shop_images\/image_50.png"
+        "product": "coat"
       }
     },
     "4ccc06d0-8e65-4517-8055-8677421e065b": {
@@ -69,8 +67,7 @@
         "reverse": true,
         "title": "Jeans.",
         "desc": "<p>Whether you prefer a classic straight leg, a trendy skinny fit, or a comfortable bootcut, you'll find your perfect pair in our range.<\/p>",
-        "product": "new-spring-summer-elastic-trousers-black-and-white-ripped-jeans-fashion-sexy-skinny-denim-pencil-pants-s-3",
-        "image": "shopify:\/\/shop_images\/image_52.png"
+        "product": "new-spring-summer-elastic-trousers-black-and-white-ripped-jeans-fashion-sexy-skinny-denim-pencil-pants-s-3"
       }
     },
     "d494a819-072e-4f50-8a61-fd494ca172f3": {
@@ -80,8 +77,7 @@
         "reverse": false,
         "title": "T-shirts.",
         "desc": "<p>From classic crewneck tees to trendy graphic designs, you'll find the perfect t-shirt for your wardrobe.<\/p>",
-        "product": "new-spring-summer-elastic-trousers-black-and-white-ripped-jeans-fashion-sexy-skinny-denim-pencil-pants-s-3",
-        "image": "shopify:\/\/shop_images\/image_53.png"
+        "product": "new-spring-summer-elastic-trousers-black-and-white-ripped-jeans-fashion-sexy-skinny-denim-pencil-pants-s-3"
       }
     },
     "72931124-1565-4a96-b03d-00423d6ee7c6": {
@@ -90,28 +86,24 @@
         "36d031e3-be7a-4d68-b916-315f8d6a67ea": {
           "type": "logos",
           "settings": {
-            "logo": "shopify:\/\/shop_images\/Frame_33.png",
             "logo_desc": ""
           }
         },
         "f3f1728b-f672-42cc-8bfb-00137a1f4e2d": {
           "type": "logos",
           "settings": {
-            "logo": "shopify:\/\/shop_images\/image_55_2859ad4f-1266-47ff-96c2-c8ac5cc55559.png",
             "logo_desc": ""
           }
         },
         "5cb38f9b-0a78-481d-994a-eb774615b1f5": {
           "type": "logos",
           "settings": {
-            "logo": "shopify:\/\/shop_images\/Frame_35.png",
             "logo_desc": ""
           }
         },
         "e188c3ca-81b4-4af3-a5fb-a4d8cddc639e": {
           "type": "logos",
           "settings": {
-            "logo": "shopify:\/\/shop_images\/Frame_36.png",
             "logo_desc": ""
           }
         }
@@ -132,44 +124,32 @@
         "9de7cce3-c9c4-4fd8-b803-86be4eb455b8": {
           "type": "review",
           "settings": {
-            "rating": "shopify:\/\/shop_images\/Frame_38.png",
             "desc": "<p>This is a solid jacket. It fits nice. My wife loves it.<\/p>",
-            "pic": "shopify:\/\/shop_images\/Ellipse_4.png",
             "name": "Tom Harris",
-            "check": "shopify:\/\/shop_images\/Icons.png",
             "order": "Order confirmed"
           }
         },
         "5ac1be6a-9938-4d3c-8ef6-5237b5d40192": {
           "type": "review",
           "settings": {
-            "rating": "shopify:\/\/shop_images\/Frame_38.png",
             "desc": "<p>Best and durable jacket.<\/p>",
-            "pic": "shopify:\/\/shop_images\/Ellipse_4_1.png",
             "name": "Esther Howard",
-            "check": "shopify:\/\/shop_images\/Icons.png",
             "order": "Order confirmed"
           }
         },
         "0d507268-381c-462e-9835-383037cea5ad": {
           "type": "review",
           "settings": {
-            "rating": "shopify:\/\/shop_images\/Frame_38.png",
             "desc": "<p>I highly recommend this jacket for what it cost and the quality you get with it.<\/p>",
-            "pic": "shopify:\/\/shop_images\/Ellipse_4_2.png",
             "name": "Tom Harris",
-            "check": "shopify:\/\/shop_images\/Icons.png",
             "order": "Order confirmed"
           }
         },
         "27827ea6-26b3-4b25-b7b9-f875baec4763": {
           "type": "review",
           "settings": {
-            "rating": "shopify:\/\/shop_images\/Frame_38.png",
             "desc": "<p>I highly recommend this jacket for what it cost and the quality you get with it.<\/p>",
-            "pic": "shopify:\/\/shop_images\/Ellipse_4_2.png",
             "name": "Theresa Webb",
-            "check": "shopify:\/\/shop_images\/Icons.png",
             "order": "Order confirmed"
           }
         }
