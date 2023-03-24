@@ -9,7 +9,7 @@
   }
 {% endstyle %}
 <header class="bg-primary h-20 flex items-center w-full z-[9999] md:px-[60px] lg:pr-[24px]" id="header">
-  <nav class="justify-between container flex  md:w-full mx-auto w-11/12 main-nav items-center xl:max-w-[1200px]">
+  <nav class="justify-between container {{menu_links}} flex  md:w-full mx-auto w-11/12 main-nav items-center xl:max-w-[1200px]">
     <div>
       <a href="{{ routes.root_url }}" class=" h-11">
         {%- if section.settings.logo != blank -%}
